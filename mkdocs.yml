@@ -1,0 +1,101 @@
+# Project information
+site_name: Gamut Documentation
+site_url: https://thomassuedbroecker.github.io/How-to-install-MkDocs-on-Mac-and-setup-integration-with-GitHub
+site_author: Bigdata //thomassuedbroecker.github.io/How-to-install-MkDocs-on-Mac-and-setup-integration-with-GitHub
+
+# Repository
+repo_name: How-to-install-MkDocs-on-Mac-and-setup-integration-with-GitHub
+repo_url: https://github.com/thomassuedbroecker/How-to-install-MkDocs-on-Mac-and-setup-integration-with-GitHub
+edit_uri: edit/master/docs
+docs_dir: docs
+
+# Navigation
+nav:
+  - Welcome:
+    - Overview: README.md 
+  - Steps:
+    - 1 MkDocs installation on Mac: steps/1-MkDocs-installation-on-Mac.md 
+    - 2 Verify your documentation and build the pages: steps/2-Verify-your-documentation-and-build-the-pages.md
+    - 3 Setup the integration to your GitHub project: steps/3-Setup-the-integration-to-your-GitHub-project.md
+
+
+copyright: Copyright &copy; 2021 C-DAC
+
+
+# Theme
+theme:
+  name: material
+
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+  favicon: img/favicon.ico
+  logo: img/logo-gamut.png
+
+  features:
+    # - navigation.tabs
+    - navigation.instant
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+      primary: green
+      accent: blue
+    - scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+      primary: blue
+      accent: blue
+
+
+extra:
+  generator: false
+#   homepage: https://example.com
+# Plugins
+plugins:
+  - search
+
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde

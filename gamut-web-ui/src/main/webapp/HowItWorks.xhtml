@@ -1,0 +1,166 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+
+                <h:outputScript library="vendor/jquery" name="jquery.min.js"/>
+
+                <h:outputScript library="vendor/rs-plugin/css" name="settings.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="layers.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="navigation.css"/>
+
+                <section class="page-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="breadcrumb">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active">Gamut</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h1>How it works</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container">
+
+                    <!--                    <div class="row">
+                                            <div class="col">
+                                                <div class="portfolio-title">
+                    
+                                                </div>
+                                                
+                                                                            <hr class="tall"/>
+                                            </div>
+                                        </div>-->
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img src="img/gamut-logo-without-bg.png" alt="" height="250px" width="300px" style="margin-top: 40px"/>
+                        </div>
+
+                        <div class="col-lg-8">
+                            <div class="portfolio-info">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5>WHAT IS GAMUT</h5>
+                                    </div>                                   
+                                </div>
+                            </div>
+
+                            <p class="mt-2" >
+                                GAMUT has been developed as a platform for addressing high-throughput analysis and management of variant data produced by Next Generation Sequencing techniques. It uses MongoDB, a big-data based solution at the back-end as analysis using classical RDBMS are extremely time-consuming.
+                                The variant data includes both Single Nucleotide Polymorphisms (SNPs) and Insertions and Deletions (InDels). Timely analysis of variants helps to associate these changes to phenotype, thereby providing a clue to understand the relationship between genotype and phenotype, which is one of the major goals of biology and medicine. 
+                                
+                                
+                            </p>   
+                            <p class="mt-2" >
+                            The core principle behind variant comparison is to arrive a probable list of SNPs that can differentiate two sets of data (populations) with direct applications in array design, genotype imputation, cataloging of variants in regions of interest, and filtering of likely neutral variants. Presently, it contains data pertaining to eight populations of South-Asian, African and European descent. The objective is to compare the SNPs across various samples. Such a study promises to provide a glimpse of the underlying similarities and variations and can serve as an indicator of the magnitude of genes under positive selection which need to be further evaluated using statistical tests based on genetic differentiation and site frequency spectrum.
+</p> 
+
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img src="img/genotyping-without-bg.png" alt="" height="250px" width="300px" style="margin-top: 40px"/>
+                        </div>
+
+                        <div class="col-lg-8">
+
+                            <div class="portfolio-info">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5>GENOTYPING</h5>
+                                    </div>
+                                    <div class="col-md-6 text-left text-lg-right">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="mt-2">
+                            Genotyping is the process of determining differences in the genetic make-up (genotype) of an individual by examining the individual's DNA sequence using biological assays and comparing it to another individual's sequence or a reference sequence. It reveals the alleles an individual has inherited from their parents. Traditionally genotyping is the use of DNA sequences to define biological populations by use of molecular tools. 
+                            </p><p class="mt-2">
+                            Genotyping enables researchers to explore genetic variants such as single nucleotide polymorphisms (SNPs) and large structural changes in DNA. High-throughput genomic technologies such as next-generation sequencing (NGS) and microarrays enable a deeper understanding of disease etiology on a molecular level. With multiple genomic targets potentially contributing to disease, analysis requires flexibility and accuracy. SNP genotyping and copy number variation (CNV) data analysis tools can analyze results for millions of markers and probes and detect sample outliers, providing insight into the functional consequences of genetic variation.
+
+                            </p>
+                        </div>
+                    </div>
+<br/>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img src="img/storage-without-bg.png" alt="" height="200px" width="150px" style="margin-left: 50px"/>
+                        </div>
+
+                        <div class="col-lg-8">
+
+                            <div class="portfolio-info">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5>STORAGE</h5>
+                                    </div>
+                                    <div class="col-md-6 text-left text-lg-right">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="mt-2">
+                                MongoDB is an open-source database developed by MongoDB, Inc. MongoDB stores data in JSON-like documents that can vary in structure. Related information is stored together for fast query access through the MongoDB query language. MongoDB uses dynamic schemas, meaning that you can create records without first defining the structure, such as the fields or the types of their values. You can change the structure of records (which we call documents) simply by adding new fields or deleting existing ones. This data model give you the ability to represent hierarchical relationships, to store arrays, and other more complex structures easily. MongoDB was also designed with high availability and scalability in mind, and includes out-of-the-box replication and auto-sharding.
+                                As deployments grow in terms of data volume and throughput, MongoDB scales easily with no downtime, and without changing application.
+
+                            </p>                            
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img src="img/analysis-without-bg.png" alt="" height="200px" width="250px" style="margin-left: 40px;"/>
+                        </div>
+
+                        <div class="col-lg-8">
+
+                            <div class="portfolio-info">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5>ANALYSIS</h5>
+                                    </div>
+                                    <div class="col-md-6 text-left text-lg-right">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="mt-2" ></p>                            
+                        </div>
+                    </div>
+                </div>
+
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.tools.min.js"/>
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.revolution.min.js"/>
+                <h:outputScript library="js/views" name="view.contact.js"/>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,272 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+
+                <h:outputScript library="vendor/jquery" name="jquery.min.js"/>
+
+                <h:outputScript library="vendor/rs-plugin/css" name="settings.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="layers.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="navigation.css"/>
+                <style tyle="text/css">
+                    .animated .ui-progressbar-value { 
+                        background-image: url("/showcase/javax.faces.resource/demo/images/pbar-ani.gif.xhtml"); 
+                    }
+                </style>
+                <script type="text/javascript">
+                    function start() {
+                        PF('startButton1').disable();
+
+                        window['progress'] = setInterval(function () {
+                            var pbClient = PF('pbClient'),
+                                    oldValue = pbClient.getValue(),
+                                    newValue = oldValue + 20;
+
+                            pbClient.setValue(pbClient.getValue() + 20);
+
+                            if (newValue === 100) {
+                                clearInterval(window['progress']);
+                            }
+
+
+                        }, 1000);
+                    }
+
+                    function cancel() {
+                        clearInterval(window['progress']);
+                        PF('pbClient').setValue(0);
+                        PF('startButton1').enable();
+                    }
+                </script>
+
+
+                <section class="page-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="breadcrumb">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active">Advanced Search</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h1>Search Here</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="portfolio-title">
+                                <div class="row">                                    
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <pri:panel id="pnl">
+                        <h:form id="formbasic" prependId="false" class="form-horizontal form-bordered">  
+
+                            <div class="row">
+
+                                <div class="col-lg-6">
+
+                                    <div class="portfolio-info">
+
+                                       <div class="row">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-10">
+                                                <label>
+                                                    
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <h:outputLabel class=" control-label" 
+                                                               style="font-weight: bold;color:#0088cc; " 
+                                                               value="Set 1" />       
+                                            </div>
+                                            <div class="col-md-10">
+                                                <h:selectManyMenu value="#{snpHomeBean.selectedChickenLineInfoSetOne}"  
+                                                                  p:data-plugin-selectTwo="data-plugin-selectTwo" 
+                                                                  class="form-control populate" 
+                                                                  style="height: 100px;width:100%;text-align: left;
+                                                                  overflow-y: scroll"   >  
+                                                    <f:selectItems value="#{snpHomeBean.chickenLineInfo}" 
+                                                                   itemLabel="#{snpHomeBean.chickenLineInfo}" 
+                                                                   itemValue="#{snpHomeBean.chickenLineInfo}" />                                             
+                                                </h:selectManyMenu>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <h:outputLabel class=" control-label" id="one1" style="font-weight: bold;color:#0088cc; "
+                                                               value="Set 2" />        
+
+                                            </div>
+                                            <div class="col-md-10">
+                                                <h:selectManyMenu value="#{snpHomeBean.selectedChickenLineInfoSetTwo}"   
+                                                                  p:data-plugin-selectTwo="data-plugin-selectTwo" 
+                                                                  class="form-control populate" 
+                                                                  style="height: 100px;width: 100%;text-align: left;overflow-y: scroll"   >  
+                                                    <f:selectItems value="#{snpHomeBean.chickenLineInfo}" 
+                                                                   itemLabel="#{snpHomeBean.chickenLineInfo}" 
+                                                                   itemValue="#{snpHomeBean.chickenLineInfo}" />                                             
+                                                </h:selectManyMenu>
+
+                                            </div>
+                                        </div>
+                                        <br/>
+
+
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <h:panelGrid id="pnl1"  width="100%">
+                                                    
+                                                
+                                                <h:outputLabel rendered="#{!snpHomeBean.advFlag}" class=" control-label" style="font-weight: bold;color:#0088cc; " 
+                                                               value="Gene Id" />       
+                                                
+                                                <h:outputLabel rendered="#{snpHomeBean.advFlag}" class=" control-label" 
+                                                               style="font-weight: bold;color:#0088cc; " 
+                                                               value="ID" /> 
+                                                </h:panelGrid>
+                                            </div>
+                                            <div class="col-md-10">                                                
+                                                <h:panelGrid id="pnl2"  width="100%">
+                                                <h:inputText rendered="#{!snpHomeBean.advFlag}" value="#{snpHomeBean.geneId}" class="form-control form-control-lg mb-3"/>  
+                                                
+                                                <h:inputText rendered="#{snpHomeBean.advFlag}" value="#{snpHomeBean.searchById}" class="form-control form-control-lg mb-3"/>  
+                                                
+                                                </h:panelGrid>
+                                            </div>
+                                        </div>
+                                        
+                                        
+
+
+                                        <div class="row">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-8">
+
+                                                <pri:commandButton  id="saveBtn" 
+                                                                    class="btn btn-primary" 
+                                                                    action="#{snpHomeBean.searchByAdv()}" value="Search" />
+
+                                                <span class="arrow hlb appear-animation" data-appear-animation="rotateInUpLeft" 
+                                                      data-appear-animation-delay="800">
+
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
+                                <pri:blockUI block="pnl" trigger="saveBtn" >
+                                     <h:panelGrid columns="2">  
+                                            <h:graphicImage library="img" name="logo_flip.gif"  
+                                                            style="margin-right: 12px; vertical-align: middle; width: 50px;height: 50px;"/>  
+                                            <h:outputText value="Please wait..." style="white-space: nowrap;font-weight: bold"/>  
+                                        </h:panelGrid>  
+                                </pri:blockUI>
+
+                                 <div class="col-lg-6" >
+                                    <p>
+                                        We have included one sample each from the following 8 populations (available via 1000 genomes project) viz.,
+
+
+                                        <table style="border: 1;
+                                               font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Segoe UI Symbol'; font-size: 1rem;" class="table table-bordered table-striped mb-0" >
+
+                                            <tr><th>Population</th>
+                                                <th>Abbreviation</th>
+                                                <th>Human 1000 genomes individual Sample ID</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Punjabis in Lahore, Pakistan</td>
+                                                <td>PJL</td>
+                                                <td>HG01583</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gujarati Indian in Houston, Texas</td>
+                                                <td>GIH</td>
+                                                <td>NA20845</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>Indian Telugu from UK</td>
+                                                <td>ITU</td>
+                                                <td>HG03713</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sri Lankan Tamil from UK </td>
+                                                <td>STU</td>
+                                                <td>HG03642</td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>Bengali from Bangladesh </td>
+                                                <td>BEB</td>
+                                                <td>HG03006</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Yoruba in Ibadan</td>
+                                                <td>YRI</td>
+                                                <td>NA18505</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Utah Residents with Northern &amp; Western European Ancestry</td>
+                                                <td>CEU</td>
+                                                <td>NA06984</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Han Chinese in Bejing</td>
+                                                <td>CHB</td>
+                                                <td>NA18525</td>
+                                            </tr>
+                                        </table>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </h:form>
+
+                    </pri:panel>
+                </div>
+
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.tools.min.js"/>
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.revolution.min.js"/>
+                <h:outputScript library="js/views" name="view.contact.js"/>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

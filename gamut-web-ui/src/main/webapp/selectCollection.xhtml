@@ -1,0 +1,147 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+
+                <h:outputScript library="vendor/jquery" name="jquery.min.js"/>
+
+                <h:outputScript library="vendor/rs-plugin/css" name="settings.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="layers.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="navigation.css"/>
+
+                <section class="page-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="breadcrumb" style="font-size: 22px;">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active">Search</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h1>Basic Search</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="portfolio-title">
+                                <!--                                <div class="row">
+                                                                    <div class="portfolio-nav-all col-lg-1">
+                                                                        <a href="portfolio-single-small-slider.html" data-tooltip="data-tooltip" 
+                                                                           data-original-title="Back to list"><i class="fa fa-th"></i></a>
+                                                                    </div>
+                                                                    <div class="col-lg-10 text-center">
+                                                                        <h2 class="mb-0">Porto Watch</h2>
+                                                                    </div>
+                                                                    <div class="portfolio-nav col-lg-1">
+                                                                        <a href="portfolio-single-small-slider.html" class="portfolio-nav-prev" data-tooltip="data-tooltip" data-original-title="Previous"><i class="fa fa-chevron-left"></i></a>
+                                                                        <a href="portfolio-single-small-slider.html" class="portfolio-nav-next" data-tooltip="data-tooltip" data-original-title="Next"><i class="fa fa-chevron-right"></i></a>
+                                                                    </div>
+                                                                </div>-->
+                            </div>
+
+                            <!--<hr class="tall"/>-->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+
+                            <img src="img/basic-search.png" alt="" height="350px" width="350px" style="margin-top: 40px"/>
+
+
+                        </div>
+
+                        <div class="col-lg-8">
+
+                            <div class="portfolio-info">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5>Basic Search</h5>
+                                    </div>
+                                    <div class="col-md-6 text-left text-lg-right">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <h:form>
+                            <p class="mt-2" >
+                                The search will enable to find out variant allele on users interest of region on particular chromosome. 
+                                <br/>
+                                
+                                <h:panelGrid id="pnl1" columns="3" width="100%">
+
+
+                                    <h:outputLabel class=" control-label" style="font-weight: bold;color:#0088cc; " 
+                                                   value="Organism Name" />       
+
+                                    <h:inputText class=" control-label" 
+                                                   style="font-weight: bold;color:#0088cc; " 
+                                                   value="#{uploadBean.organismScientificName}" /> 
+                                </h:panelGrid>
+                                <br/>
+                                <h:panelGrid id="pnl3" columns="3" width="100%">
+
+
+                                    <h:outputLabel class=" control-label" style="font-weight: bold;color:#0088cc; " 
+                                                   value="Gene Collection Name" />       
+
+                                    <h:inputText class=" control-label" 
+                                                   style="font-weight: bold;color:#0088cc; " 
+                                                   value="#{snpHomeBean.genecollectionaName}" /> 
+                                </h:panelGrid>
+                                <br/><br/>
+                                <h:panelGrid  id="pnl2" columns="3" width="100%">
+                                    <h:outputLabel class=" control-label" style="font-weight: bold;color:#0088cc; " 
+                                                   value="vcf DB Name" />       
+
+                                    <h:inputText value="#{snpHomeBean.vcfcollectionaName}" class=" control-label" 
+                                                   style="font-weight: bold;color:#0088cc; " 
+                                                  /> 
+                                
+                                    
+                                 </h:panelGrid>
+                            </p>
+                            
+                            <br/><br/>
+                            <h:commandLink action="#{snpHomeBean.next()}" class="btn btn-primary btn-icon">
+                                <i class="fa fa-external-link"></i>
+                                    Search </h:commandLink>
+                                <span class="arrow hlb appear-animation" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800"/>
+                           
+                            </h:form>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.tools.min.js"/>
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.revolution.min.js"/>
+                <h:outputScript library="js/views" name="view.contact.js"/>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,100 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+
+                <h:outputScript library="vendor/jquery" name="jquery.min.js"/>
+
+                <h:outputScript library="vendor/rs-plugin/css" name="settings.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="layers.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="navigation.css"/>
+
+                <section class="page-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="breadcrumb">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active">Gamut</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h1>How it works</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="portfolio-title">
+                                <div class="row">
+                                   
+                                    <div class="col-lg-10 text-center">
+                                        <h2 class="mb-0">WHAT IS GAMUT</h2>
+                                    </div>
+                                    <div class="portfolio-nav col-lg-1">
+                                        <a href="HowItWorks_Analysis.xhtml" class="portfolio-nav-prev" data-tooltip="data-tooltip" data-original-title="Previous"><i class="fa fa-chevron-left"></i></a>
+                                        <a href="HowItWorks_Genotyping.xhtml" class="portfolio-nav-next" data-tooltip="data-tooltip" data-original-title="Next"><i class="fa fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="tall"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+
+                            <div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut', 'autoplay': true, 'autoplayTimeout': 3000}">
+                                <div>
+                                    <span class="img-thumbnail d-block">
+                                        <img src="img/gamut-logo-without-bg.png" alt="" />
+                                        
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="img-thumbnail d-block">
+                                        <img src="img/gamut-logo-without-bg.png" alt="" />
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-8">
+
+                            <p class="mt-2">
+                                GAMUT has been developed as a platform for addressing high-throughput analysis and management of variant data produced by Next Generation Sequencing techniques. It uses MongoDB, a big-data based solution at the back-end as analysis using classical RDBMS are extremely time-consuming. The variant data includes both Single Nucleotide Polymorphisms (SNPs) and Insertions and Deletions (InDels). Timely analysis of variants helps to associate these changes to phenotype, thereby providing a clue to understand the relationship between genotype and phenotype, which is one of the major goals of biology and medicine. The core principle behind variant comparison is to arrive a probable list of SNPs that can differentiate two sets of data (populations) with direct applications in array design, genotype imputation, cataloging of variants in regions of interest, and filtering of likely neutral variants. Presently, it contains data pertaining to eight populations of South-Asian, African and European descent. The objective is to compare the SNPs across various samples. Such a study promises to provide a glimpse of the underlying similarities and variations and can serve as an indicator of the magnitude of genes under positive selection which need to be further evaluated using statistical tests based on genetic differentiation and site frequency spectrum.
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.tools.min.js"/>
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.revolution.min.js"/>
+                <h:outputScript library="js/views" name="view.contact.js"/>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

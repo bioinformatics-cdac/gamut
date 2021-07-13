@@ -1,0 +1,105 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+
+                <h:outputScript library="vendor/jquery" name="jquery.min.js"/>
+
+                <h:outputScript library="vendor/rs-plugin/css" name="settings.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="layers.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="navigation.css"/>
+
+                <section class="page-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="breadcrumb">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active">Gamut</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h1>How it works</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="portfolio-title">
+                                <div class="row">
+                                   
+                                    <div class="col-lg-10 text-center">
+                                        <h2 class="mb-0">GENOTYPING</h2>
+                                    </div>
+                                    <div class="portfolio-nav col-lg-1">
+                                        <a href="HowItWorks_Gamut.xhtml" class="portfolio-nav-prev" data-tooltip="data-tooltip" data-original-title="Previous"><i class="fa fa-chevron-left"></i></a>
+                                        <a href="HowItWorks_Storage.xhtml" class="portfolio-nav-next" data-tooltip="data-tooltip" data-original-title="Next"><i class="fa fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="tall"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+
+                            <div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut', 'autoplay': true, 'autoplayTimeout': 3000}">
+                                <div>
+                                    <span class="img-thumbnail d-block">
+                                           <img src="img/genotyping-without-bg.png" alt="" />
+                                        
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="img-thumbnail d-block">
+                                           <img src="img/genotyping-without-bg.png" alt="" />
+
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-8">
+
+                            <p class="mt-2" style="font-size: 17px;">
+                               Genotyping is the process of determining differences in the genetic make-up (genotype) of an individual by examining the individual's DNA sequence using biological assays and comparing it to another individual's sequence or a reference sequence. It reveals the alleles an individual has inherited from their parents. Traditionally genotyping is the use of DNA sequences to define biological populations by use of molecular tools. 
+                            </p>
+                            <p class="mt-2" style="font-size: 17px;">
+                               Genotyping enables researchers to explore genetic variants such as single nucleotide polymorphisms (SNPs) and large structural changes in DNA. High-throughput genomic technologies such as next-generation sequencing (NGS) and microarrays enable a deeper understanding of disease etiology on a molecular level. With multiple genomic targets potentially contributing to disease, analysis requires flexibility and accuracy. SNP genotyping and copy number variation (CNV) data analysis tools can analyze results for millions of markers and probes and detect sample outliers, providing insight into the functional consequences of genetic variation.
+
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.tools.min.js"/>
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.revolution.min.js"/>
+                <h:outputScript library="js/views" name="view.contact.js"/>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

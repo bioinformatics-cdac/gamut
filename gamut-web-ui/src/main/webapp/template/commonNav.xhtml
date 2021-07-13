@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <body>
+        <ui:composition>
+            <div class="navbar">
+                <nav class="navbar-default navbar-static-side" role="navigation">
+                    <!-- sidebar-collapse -->
+                    <div class="sidebar-collapse">
+                        <!-- side-menu -->
+                        <ul class="nav" id="side-menu">
+                            <li>
+                                <!-- user image section-->
+                                <div class="user-section">
+                                    <div class="user-info">                                
+                                    </div>
+                                </div>
+                                <!--end user image section-->
+                            </li>
+                            <li class="sidebar-search">
+                            </li>
+
+                            <li class="#{navigationBean.pageSelected('/index')}">
+                                <a href="#{request.contextPath}/index">
+                                    <i class="fa fa-home fa-fw"></i>Home</a>                            
+                            </li>
+                            
+                            <li>
+
+                                
+
+                                <a class="#{navigationBean.pageSelected('/projectListPage')}" href="projectListPage.xhtml"><i class="fa fa-bars fa-fw"></i>
+                                    Project List</a>
+                                
+                                <a class="#{navigationBean.pageSelected('/downloadPage')}" href="downloadPage.xhtml"><i class="fa fa-download fa-fw"></i>
+
+                                    Browse/Download Files</a>
+                                
+                                 <a class="#{navigationBean.pageSelected('/upload')}" href="upload.xhtml"><i class="fa fa-upload fa-fw"></i>
+                                    Upload Files To Project</a>
+                                
+
+                                 <a class="#{navigationBean.pageSelected('/masterstructure')}" href="masterstructure.xhtml"><i class="fa fa-sitemap fa-fw"></i>Master Structures</a>
+
+                            </li>
+                            <h:panelGroup  rendered="#{dashboardBean.loggedUser.role =='ADMIN'}">
+                                <li>
+
+                                    <a class="#{navigationBean.pageSelected('/projectAccess')}" href="projectAccess.xhtml"><i class="fa fa-share-alt-square fa-fw"></i>Assign Project Access</a>
+
+
+                                    <a class="#{navigationBean.pageSelected('/summary')}" href="summary"><i class="fa fa-list fa-fw"></i>Summary Reports</a>
+                                </li>
+
+                                <li>                                
+                                    <a class="#{navigationBean.pageSelected('/newproject')}"  href="newproject.xhtml"><i class="fa fa-folder fa-fw"></i>
+                                        New Project</a> 
+
+                                     <a class="#{navigationBean.pageSelected('/registration')}"  href="registration.xhtml"><i class="fa fa-user fa-fw"></i>
+                                        New User</a> 
+                                </li>
+
+                                <li>                                
+                                    <a class="#{navigationBean.pageSelected('/EditProject')}"   href="EditProject.xhtml"><i class="fa fa-pencil-square-o fa-fw"></i>
+                                        Edit Project</a> 
+
+                                    <a class="#{navigationBean.pageSelected('/EditUser')}"   href="EditUser.xhtml"><i class="fa fa-pencil-square-o fa-fw"></i>
+                                        Edit/Delete User</a>      
+                                </li>
+                            </h:panelGroup>
+                            
+                            
+                            <h:panelGroup  rendered="#{dashboardBean.loggedUser.role =='ADMIN'}">
+                                <li>
+                                    <a class="#{navigationBean.pageSelected('/decisionHelper')}"  href="decisionHelper.xhtml"><i class="fa fa-lightbulb-o fa-fw"></i>Decision Helper</a>
+                                </li>
+                            </h:panelGroup>
+
+                        </ul>
+                        <!-- end side-menu -->
+                    </div>
+                    <!-- end sidebar-collapse -->
+                </nav>
+            </div>
+            <!-- end navbar side -->
+        </ui:composition>
+    </body>
+</html>
+
+

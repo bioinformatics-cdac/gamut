@@ -1,0 +1,115 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+	<f:event type="preRenderView" listener="#{snpHomeBean.searchhomeonload}" />
+	
+                <h:outputScript library="vendor/jquery" name="jquery.min.js"/>
+
+                <h:outputScript library="vendor/rs-plugin/css" name="settings.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="layers.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="navigation.css"/>
+
+                <section class="page-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="breadcrumb" style="font-size: 22px;">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active">Search</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h1>Advance Search</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="portfolio-title">
+                                
+                            </div>
+
+                            <!--<hr class="tall"/>-->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+
+                            <img src="img/advanced-search.png" alt="" height="350px" width="350px" style="margin-top: 40px"/>
+
+
+                        </div>
+
+                        <div class="col-lg-8">
+
+                            <div class="portfolio-info">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5>Advance Search</h5>
+                                    </div>
+                                    <div class="col-md-6 text-left text-lg-right">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <h:form id="formbasic" prependId="false" class="form-horizontal form-bordered">  
+                                <p class="mt-2" >
+                                    It will enable users to look variant allele by ensemble gene ID or Official Symbol (gene name)provided by HUGO Gene Nomenclature Committee (HGNC) .it be also give power to users to search by dbSNP. 
+
+									<pri:selectOneMenu id="collection"
+										value="#{snpHomeBean.vcfcollectionaName}" style="width:150px">
+	
+										<f:selectItem itemLabel="Select Collection" itemValue=""
+											noSelectionOption="true" />
+										<f:selectItems value="#{snpHomeBean.listOfCollectionsString}" />
+									</pri:selectOneMenu>
+								
+                                </p>
+                                <br/>
+                                <br/>
+                                <br/><br/><br/><br/>
+                                <h:commandLink action="#{snpHomeBean.getAdvForward()}" class="btn btn-primary btn-icon">
+                                    <i class="fa fa-external-link"></i>
+                                    Search </h:commandLink>
+
+                                <span class="arrow hlb appear-animation" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800">
+
+                                </span>
+                            </h:form>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.tools.min.js"/>
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.revolution.min.js"/>
+                <h:outputScript library="js/views" name="view.contact.js"/>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

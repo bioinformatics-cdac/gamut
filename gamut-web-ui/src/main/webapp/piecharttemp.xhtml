@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+                template="template/commonLayout.xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"  
+                xmlns:pri="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content" >
+
+        <h:form id="form" prependId="false">
+
+            <br/>
+
+            <div id="chart3" style="height:50%; width:50%;"></div>
+
+        </h:form>
+
+
+        <script>
+            $(document).ready(function () {
+                var line1 = [['Nissan', 4], ['Porche', 6], ['Acura', 2], ['Aston Martin', 5], ['Rolls Royce', 6]];
+
+                $('#chart3').jqplot([line1], {
+                    title: 'Bar Chart with Custom Colors',
+                    // Provide a custom seriesColors array to override the default colors.
+                    seriesColors: ['#85802b', '#00749F', '#73C774', '#C7754C', '#17BDB8'],
+                    seriesDefaults: {
+                        renderer: $.jqplot.BarRenderer,
+                        rendererOptions: {
+                            // Set varyBarColor to tru to use the custom colors on the bars.
+                            varyBarColor: true
+                        }
+                    },
+                    axes: {
+                        xaxis: {
+                            renderer: $.jqplot.CategoryAxisRenderer
+                        }
+                    }
+                });
+            });
+
+
+        </script>
+
+
+
+    </ui:define>
+
+
+
+
+
+</ui:composition>

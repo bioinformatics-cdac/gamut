@@ -1,0 +1,392 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+            <ui:define name="content">
+                <h:outputScript library="vendor/jquery" name="jquery.min.js"/>
+                <div role="main" class="main">
+
+                    <section class="page-header">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <ul class="breadcrumb">
+                                        <li><a href="#">Home</a></li>
+                                        <li class="active">Gamut</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h1>FAQ</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col">
+
+                                <div class="toggle toggle-primary" data-plugin-toggle="data-plugin-toggle">
+
+                                    <pri:accordionPanel>
+                                        <pri:tab title="Next Generation Sequencing Data">
+                                            <h:panelGrid columns="2" cellpadding="10">
+                                                <pri:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                                                <p >Next Generation Sequencing experiments are generating millions of short sequence reads with a high throughput resulting in huge amounts of raw data. One of the main goals of DNA sequencing is to discover genomic variants i.e., single nucleotide polymorphisms (SNPs) and insertions/deletions (indels) and associate these variations to phenotype as understanding the relationship between genotype and phenotype is one of the central goals in biology and medicine. </p>
+                                            </h:panelGrid>
+                                        </pri:tab>
+                                    </pri:accordionPanel>
+                                    <br/>
+                                    <pri:accordionPanel>
+                                        <br/><br/><br/><br/><br/><br/><br/>
+                                        <pri:tab title="1000 genomes project" >
+                                            <h:panelGrid columns="2" cellpadding="10">
+                                                <pri:graphicImage name="demo/images/godfather/godfather1.jpg" />
+
+                                                <p >
+                                                    1000 Genomes Project was initiated in 2008 with an objective to provide in-depth understanding and characterization of human genome sequence variation for investigating relationship between genotype and phenotype. The goal of the 1000 Genomes Project is to find most genetic variants that have frequencies of at least 1% in the populations studied.  The reference human genome sequence provides a foundation for the study of human genetics, but systematic investigation of human variation requires full knowledge of DNA sequence variation across the entire spectrum of allele frequencies and types of DNA differences. 
+                                                    <br/><br/>
+                                                    Substantial progress has been already made in the development of dbSNP database which includes approximately 11 million SNPs and 3 million short indels. Recent studies revealed genetic variants across 26 populations having 2504 individuals.  In this work, a total of 4 super populations have been taken into account viz.,  African (AFR), East Asian (EAS), European (EUR) and South Asian (SAS).  ~88 million variants (single nucleotide polymorphisms, insertions/deletions and structural variants across global samples) have been catalogued so far by 1000 genomes project. It also provided a key component for human genetic studies, by enabling array design, genotype imputation, cataloging of variants in regions of interest, and filtering of likely neutral variants.
+                                                </p>
+                                            </h:panelGrid>
+                                        </pri:tab>
+                                    </pri:accordionPanel>
+                                     <br/>
+                                    <pri:accordionPanel>
+                                        
+                                        <pri:tab title="Data included in GAMUT">
+                                            <h:panelGrid columns="2" cellpadding="10">
+                                                <pri:graphicImage name="demo/images/godfather/godfather1.jpg" />
+
+                                                <p >
+                                                    We have included one sample each from the following 8 populations (available via 1000 genomes project) viz.,
+
+
+                                                    <table style="border: 1" class="table table-bordered table-striped mb-0" >
+
+                                                        <tr><th>Population</th>
+                                                            <th>Abbreviation</th>
+                                                            <th>Human 1000 genomes individual Sample ID</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Punjabis in Lahore, Pakistan</td>
+                                                            <td>PJL</td>
+                                                            <td>HG01583</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Gujarati Indian in Houston, Texas</td>
+                                                            <td>GIH</td>
+                                                            <td>NA20845</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Indian Telugu from UK</td>
+                                                            <td>ITU</td>
+                                                            <td>HG03713</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Sri Lankan Tamil from UK </td>
+                                                            <td>STU</td>
+                                                            <td>HG03642</td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td>Bengali from Bangladesh </td>
+                                                            <td>BEB</td>
+                                                            <td>HG03006</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Yoruba in Ibadan</td>
+                                                            <td>YRI</td>
+                                                            <td>NA18505</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Utah Residents with Northern &amp; Western European Ancestry</td>
+                                                            <td>CEU</td>
+                                                            <td>NA06984</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Han Chinese in Bejing</td>
+                                                            <td>CHB</td>
+                                                            <td>NA18525</td>
+                                                        </tr>
+                                                    </table>
+                                                </p>
+
+                                            </h:panelGrid>
+                                        </pri:tab>
+                                    </pri:accordionPanel>
+                                      <br/>
+                                    <pri:accordionPanel>
+                                        <pri:tab title="Objective">
+                                            <h:panelGrid columns="2" cellpadding="10">
+                                                <pri:graphicImage name="demo/images/godfather/godfather1.jpg" />
+
+                                                <p>
+                                                    To compare the SNPs across various samples. Such a study promises to provide a glimpse of the underlying similarities and variations and can serve as an indicator of the magnitude of genes under positive selection which need to be further evaluated using statistical tests based on genetic differentiation and site frequency spectrum. 
+                                                </p>
+                                            </h:panelGrid>
+                                        </pri:tab>
+                                       </pri:accordionPanel>
+                                      <br/>
+                                    <pri:accordionPanel dynamic="true" cache="true">
+                                        <pri:tab title="Methodology for SNP Analysis">
+                                            <h:panelGrid columns="2" cellpadding="10">
+                                                <pri:graphicImage name="demo/images/godfather/godfather1.jpg" />
+
+                                                <p>
+                                                    <ul>
+                                                        <li>A differential property (e.g. population_1 | population_2) splits a set of genome samples</li>
+                                                        <li>A SNP position splits (supports a split) if no base occurs “on both sides”</li>
+                                                        <li>More formally, for a split S = L1, . . . ,Lm|Lm+1, . . . ,Ln:
+                                                            <ul>
+                                                                <li> Bp,left: bases at left side</li>
+                                                                <li> Bp,right: bases at right side</li>
+                                                            </ul>
+                                                            p supports S ⇔Bp,left ∩Bp,right = 0
+                                                        </li>
+                                                        <li>If |Bp,left| = 1 or |Bp,right| = 1, the respective side is “unique”</li>
+                                                        <img alt="Porto Website Template" class="img-fluid" src="img/flow.gif" 
+                                                             width="800px;" height="800px;"/>
+
+
+<!--                                                        <strong>SNP State:1</strong>
+                                                        <br/>
+                                                        <img alt="Porto Website Template" class="img-fluid" src="img/state1.jpg"/>
+
+
+                                                        <li>does not split M1 | M2: {A}∩{A} 6= 0</li>
+                                                        <li>unambiguously splits M1, M2 | M3, M4: {A}∩{T} = 0</li>
+                                                        <li>“unique” in M1, M2 and in M3, M4</li>
+
+
+                                                        <strong>SNP State:2</strong>
+                                                        <br/>
+                                                        <img alt="Porto Website Template" class="img-fluid" src="img/state2.jpg"/>
+
+                                                        <ul>
+                                                            <li>splits M1 | M2: {T}∩{C} = 0</li>
+                                                            <li>also splits M1 | M2, M3, M4: {T}∩{C} = 0</li>
+                                                            <li>does not split M1, M2 | M3, M4: {T,C}∩{C} 6 != 0 (not“unique” in M1, M2)</li>
+                                                            <li>N.B.: no SNP entry in M1 VCF file!</li>
+                                                        </ul>
+
+                                                        <strong>SNP State:3</strong>
+                                                        <br/>
+                                                        <img alt="Porto Website Template" class="img-fluid" src="img/state3.jpg"/>
+
+                                                        <ul>
+                                                            <li>splits M1, M2 | M3: {G}∩{C} = 0 (and also M1, M2 |M4)</li>
+                                                            <li>Also splits M1, M2 | M3, M4: {G}∩{A,C} = 0 (not“unique” in M3, M4)</li>
+                                                            <li>No SNP entry in M3 VCF file</li>                                            
+                                                        </ul>
+
+                                                        <strong>SNP State:3</strong>
+                                                        <br/>
+                                                        <img alt="Porto Website Template" class="img-fluid" src="img/state4.jpg"/>
+
+                                                        <ul>
+                                                            <li>Supports all splits, so not informative (eg. Parsimony)</li>
+                                                            <li>Extreme case only possible with 4 samples</li>
+                                                            <li>Insist on “unique” state at one side of split?</li>                                            
+                                                            <li>No SNP entry in M4 VCF file</li>                                            
+                                                        </ul>-->
+                                                    </ul>
+                                                </p>
+                                            </h:panelGrid>
+                                        </pri:tab>
+                                    </pri:accordionPanel> <br/>
+                                    <pri:accordionPanel>
+                                        <pri:tab title="Implementation">
+                                            <h:panelGrid columns="2" cellpadding="10">
+                                                <pri:graphicImage name="demo/images/godfather/godfather1.jpg" />
+                                                <p >
+                                                    MongoDB is an open source document-oriented NoSQL database which stores data in the form of JSON-like objects. It has emerged as one of the leading databases due to its dynamic schema, high scalability, optimal query performance, faster indexing and an active user community.
+                                                    <br/>
+                                                    The JSON class has methods for parsing JSON documents. JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write.
+                                                </p>
+                                            </h:panelGrid>
+                                        </pri:tab>
+
+
+                                    </pri:accordionPanel>
+                                    <!--                                    <section class="toggle active">
+                                                                            <label>Next Generation Sequencing Data</label>
+                                                                            <p>Next Generation Sequencing experiments are generating millions of short sequence reads with a high throughput resulting in huge amounts of raw data. One of the main goals of DNA sequencing is to discover genomic variants i.e., single nucleotide polymorphisms (SNPs) and insertions/deletions (indels) and associate these variations to phenotype as understanding the relationship between genotype and phenotype is one of the central goals in biology and medicine. </p>
+                                                                        </section>-->
+
+                                    <section class="toggle">
+                                        <!--                                        <label>1000 genomes project</label>
+                                                                                <p>
+                                                                                    1000 Genomes Project was initiated in 2008 with an objective to provide in-depth understanding and characterization of human genome sequence variation for investigating relationship between genotype and phenotype. The goal of the 1000 Genomes Project is to find most genetic variants that have frequencies of at least 1% in the populations studied.  The reference human genome sequence provides a foundation for the study of human genetics, but systematic investigation of human variation requires full knowledge of DNA sequence variation across the entire spectrum of allele frequencies and types of DNA differences. 
+                                                                                    <br/><br/>
+                                                                                    Substantial progress has been already made in the development of dbSNP database which includes approximately 11 million SNPs and 3 million short indels. Recent studies revealed genetic variants across 26 populations having 2504 individuals.  In this work, a total of 4 super populations have been taken into account viz.,  African (AFR), East Asian (EAS), European (EUR) and South Asian (SAS).  ~88 million variants (single nucleotide polymorphisms, insertions/deletions and structural variants across global samples) have been catalogued so far by 1000 genomes project. It also provided a key component for human genetic studies, by enabling array design, genotype imputation, cataloging of variants in regions of interest, and filtering of likely neutral variants.
+                                                                                </p>-->
+
+
+                                    </section>
+
+                                    <section class="toggle">
+                                        <!--                                        <label>Data included in GAMUT </label>
+                                                                                <p>
+                                                                                    We have included one sample each from the following 8 populations (available via 1000 genomes project) viz.,
+                                        
+                                        
+                                                                                    <table style="border: 1" class="table table-bordered table-striped mb-0" >
+                                        
+                                                                                        <tr><th>Population</th>
+                                                                                            <th>Abbreviation</th>
+                                                                                            <th>Human 1000 genomes individual Sample ID</th>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Punjabis in Lahore, Pakistan</td>
+                                                                                            <td>PJL</td>
+                                                                                            <td>HG01583</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Gujarati Indian in Houston, Texas</td>
+                                                                                            <td>GIH</td>
+                                                                                            <td>NA20845</td>
+                                                                                        </tr>
+                                        
+                                                                                        <tr>
+                                                                                            <td>Indian Telugu from UK</td>
+                                                                                            <td>ITU</td>
+                                                                                            <td>HG03713</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Sri Lankan Tamil from UK </td>
+                                                                                            <td>STU</td>
+                                                                                            <td>HG03642</td>
+                                                                                        </tr>
+                                        
+                                        
+                                                                                        <tr>
+                                                                                            <td>Bengali from Bangladesh </td>
+                                                                                            <td>BEB</td>
+                                                                                            <td>HG03006</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Yoruba in Ibadan</td>
+                                                                                            <td>YRI</td>
+                                                                                            <td>NA18505</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Utah Residents with Northern &amp; Western European Ancestry</td>
+                                                                                            <td>CEU</td>
+                                                                                            <td>NA06984</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Han Chinese in Bejing</td>
+                                                                                            <td>CHB</td>
+                                                                                            <td>NA18525</td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </p>-->
+                                    </section>
+
+                                    <section class="toggle">
+                                        <!--                                        <label>Objective</label>
+                                                                                <p>
+                                                                                    To compare the SNPs across various samples. Such a study promises to provide a glimpse of the underlying similarities and variations and can serve as an indicator of the magnitude of genes under positive selection which need to be further evaluated using statistical tests based on genetic differentiation and site frequency spectrum. 
+                                                                                </p>-->
+                                    </section>
+
+                                    <section class="toggle">
+                                        <!--                                        <label>Methodology for SNP Analysis</label>
+                                                                                <p>
+                                                                                    <ul>
+                                                                                        <li>A differential property (e.g. population_1 | population_2) splits a set of genome samples</li>
+                                                                                        <li>A SNP position splits (supports a split) if no base occurs “on both sides”</li>
+                                                                                        <li>More formally, for a split S = L1, . . . ,Lm|Lm+1, . . . ,Ln:
+                                                                                            <ul>
+                                                                                                <li> Bp,left: bases at left side</li>
+                                                                                                <li> Bp,right: bases at right side</li>
+                                                                                            </ul>
+                                                                                            p supports S ⇔Bp,left ∩Bp,right = 0
+                                                                                        </li>
+                                                                                        <li>If |Bp,left| = 1 or |Bp,right| = 1, the respective side is “unique”</li>
+                                                                                        
+                                                                                        
+                                        
+                                                                                        <strong>SNP State:1</strong>
+                                                                                        <br/>
+                                                                                        <img alt="Porto Website Template" class="img-fluid" src="img/state1.jpg"/>
+                                        
+                                        
+                                                                                        <li>does not split M1 | M2: {A}∩{A} 6= 0</li>
+                                                                                        <li>unambiguously splits M1, M2 | M3, M4: {A}∩{T} = 0</li>
+                                                                                        <li>“unique” in M1, M2 and in M3, M4</li>
+                                        
+                                        
+                                                                                        <strong>SNP State:2</strong>
+                                                                                        <br/>
+                                                                                        <img alt="Porto Website Template" class="img-fluid" src="img/state2.jpg"/>
+                                        
+                                                                                        <ul>
+                                                                                            <li>splits M1 | M2: {T}∩{C} = 0</li>
+                                                                                            <li>also splits M1 | M2, M3, M4: {T}∩{C} = 0</li>
+                                                                                            <li>does not split M1, M2 | M3, M4: {T,C}∩{C} 6 != 0 (not“unique” in M1, M2)</li>
+                                                                                            <li>N.B.: no SNP entry in M1 VCF file!</li>
+                                                                                        </ul>
+                                        
+                                                                                        <strong>SNP State:3</strong>
+                                                                                        <br/>
+                                                                                        <img alt="Porto Website Template" class="img-fluid" src="img/state3.jpg"/>
+                                        
+                                                                                        <ul>
+                                                                                            <li>splits M1, M2 | M3: {G}∩{C} = 0 (and also M1, M2 |M4)</li>
+                                                                                            <li>Also splits M1, M2 | M3, M4: {G}∩{A,C} = 0 (not“unique” in M3, M4)</li>
+                                                                                            <li>No SNP entry in M3 VCF file</li>                                            
+                                                                                        </ul>
+                                        
+                                                                                        <strong>SNP State:3</strong>
+                                                                                        <br/>
+                                                                                        <img alt="Porto Website Template" class="img-fluid" src="img/state4.jpg"/>
+                                        
+                                                                                        <ul>
+                                                                                            <li>Supports all splits, so not informative (eg. Parsimony)</li>
+                                                                                            <li>Extreme case only possible with 4 samples</li>
+                                                                                            <li>Insist on “unique” state at one side of split?</li>                                            
+                                                                                            <li>No SNP entry in M4 VCF file</li>                                            
+                                                                                        </ul>
+                                                                                    </ul>
+                                                                                </p>-->
+                                    </section>
+                                    <section class="toggle">
+                                        <!--                                        <label>Implementation</label>
+                                                                                
+                                                                                <p>
+                                                                                    MongoDB is an open source document-oriented NoSQL database which stores data in the form of JSON-like objects. It has emerged as one of the leading databases due to its dynamic schema, high scalability, optimal query performance, faster indexing and an active user community.
+                                                                                    <br/>
+                                                                                    The JSON class has methods for parsing JSON documents. JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write.
+                                                                                </p>-->
+                                    </section>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

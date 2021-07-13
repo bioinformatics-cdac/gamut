@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="template/commonLayoutHome.xhtml">
+
+    <ui:define name="title">
+        Login
+    </ui:define>
+
+    <ui:define name="css">
+        <style>
+            .form {
+                position: relative;
+                z-index: 1;
+                background: #FFFFFF;
+                max-width: 300px;
+                margin: 0 auto 100px;
+                padding: 30px;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+                text-align: center;
+            }
+            .form .thumbnail {
+                background: #24425f;
+                width: 150px;
+                height: 150px;
+                margin: 0 auto 30px;
+                padding: 30px 30px;
+                border-top-left-radius: 100%;
+                border-top-right-radius: 100%;
+                border-bottom-left-radius: 100%;
+                border-bottom-right-radius: 100%;
+                box-sizing: border-box;
+            }
+            .form .thumbnail img {
+                display: block;
+                width: 100%;
+            }
+            .input {
+                outline: 0;
+                background: #f2f2f2;
+                width: 100%;
+                border: 0;
+                margin: 0 0 15px;
+                padding: 15px;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+                box-sizing: border-box;
+                font-size: 14px;
+            }
+            .button {
+                outline: 0;
+                background: #EF3B3A;
+                width: 100%;
+                border: 0;
+                padding: 15px;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+                color: #FFFFFF;
+                font-size: 14px;
+                -webkit-transition: all 0.3 ease;
+                transition: all 0.3 ease;
+                cursor: pointer;
+            }
+            .form .message {
+                margin: 15px 0 0;
+                color: #b3b3b3;
+                font-size: 12px;
+            }
+            .form .message a {
+                color: #EF3B3A;
+                text-decoration: none;
+            }
+            .form .register-form {
+                display: none;
+            }
+
+            .container1 {
+                position: relative;
+                z-index: 1;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            .container1:before, .container1:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            .container1 .info {
+                margin: 50px auto;
+                text-align: center;
+            }
+            .container1 .info h1 {
+                margin: 0 0 15px;
+                padding: 0;
+                font-size: 36px;
+                font-weight: 300;
+                color: #1a1a1a;
+            }
+            .container1 .info span {
+                color: #4d4d4d;
+                font-size: 12px;
+            }
+            .container1 .info span a {
+                color: #000000;
+                text-decoration: none;
+            }
+            .container1 .info span .fa {
+                color: #EF3B3A;
+            }
+
+           
+        </style>
+    </ui:define>
+
+    <ui:define name="content">
+
+
+
+        <h3 style="text-align: center;">Login Page </h3>
+        <section class="section-bg-rounded bg-primary-color bg-rounded-style1 background-cover  ">
+
+
+            <div class="container">
+
+                <div class="form">
+                    <div class="thumbnail"><img src="img/logo1.png"/></div>
+
+
+
+                    <form role="form" class="login-form" action="" method="post" autocomplete="off">
+                        <input class="input" type="text" name="username" placeholder="username"/>
+                        <input class="input" type="password"  name="password" placeholder="password"/>
+                        <!--                        <button>login</button>-->
+                        <input  type="submit" class="button" value="Sign In"/>
+
+                    </form>
+                </div>
+
+
+
+
+                <!--                <div class="row" style="margin-top:20px">
+                                    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                
+                
+                
+                                        <form role="form" action="" method="post">  autocomplete="off"
+                                            <fieldset>
+                                                <h2>Please Sign In</h2>
+                                                <hr class="colorgraph"/>
+                                                <div class="form-group">
+                                                    <input type="text" name="username" id="email" class="form-control input-lg" placeholder="Email Address"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password"/>
+                                                </div>
+                
+                                                <hr class="colorgraph"/>
+                                                <div class="row">
+                                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                                        <input type="submit" class="btn btn-lg btn-success " value="Sign In"/>
+                                                    </div>
+                                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>-->
+
+            </div>
+            <!--            <div class="container" style="padding-left: 50px; padding-right: 50px">
+                            <form action="" method="post" autocomplete="off">
+                                <fieldset>
+                                    <div>
+                                       
+                                        <label> User Name </label>
+                                        <input class="form-control" placeholder="Username" name="username"  autofocus="autofocus"/>
+                                    </div>
+                                    <div>
+                                        <label> Password </label>
+                                        <input class="form-control" placeholder="Password" name="password" type="password" value=""/>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input name="remember" type="checkbox" value="rememberMe"/>Remember Me
+                                        </label>
+                                    </div>
+                                     Change this to a button or input when using this as a form 
+                                    <button  class="btn btn-lg btn-success btn-block" action="index.xhtml">Login</button>
+                                </fieldset>
+                            </form>
+                        </div>-->
+        </section>
+    </ui:define>
+
+    <ui:define name="script">
+        <script>
+            $(function () {
+                $('.button-checkbox').each(function () {
+                    var $widget = $(this),
+                            $button = $widget.find('button'),
+                            $checkbox = $widget.find('input:checkbox'),
+                            color = $button.data('color'),
+                            settings = {
+                                on: {
+                                    icon: 'glyphicon glyphicon-check'
+                                },
+                                off: {
+                                    icon: 'glyphicon glyphicon-unchecked'
+                                }
+                            };
+
+                    $button.on('click', function () {
+                        $checkbox.prop('checked', !$checkbox.is(':checked'));
+                        $checkbox.triggerHandler('change');
+                        updateDisplay();
+                    });
+
+                    $checkbox.on('change', function () {
+                        updateDisplay();
+                    });
+
+                    function updateDisplay() {
+                        var isChecked = $checkbox.is(':checked');
+                        // Set the button's state
+                        $button.data('state', (isChecked) ? "on" : "off");
+
+                        // Set the button's icon
+                        $button.find('.state-icon')
+                                .removeClass()
+                                .addClass('state-icon ' + settings[$button.data('state')].icon);
+
+                        // Update the button's color
+                        if (isChecked) {
+                            $button
+                                    .removeClass('btn-default')
+                                    .addClass('btn-' + color + ' active');
+                        } else
+                        {
+                            $button
+                                    .removeClass('btn-' + color + ' active')
+                                    .addClass('btn-default');
+                        }
+                    }
+                    function init() {
+                        updateDisplay();
+                        // Inject the icon if applicable
+                        if ($button.find('.state-icon').length == 0) {
+                            $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i> ');
+                        }
+                    }
+                    init();
+                });
+            });
+        </script>
+    </ui:define>
+
+</ui:composition>

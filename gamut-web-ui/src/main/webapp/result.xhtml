@@ -1,0 +1,1189 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+                <h:outputScript library="js" name="Chart.js"/>
+                <!--<h:outputScript library="vendor/jquery" name="jquery.min.js"/>-->
+                <h:form id="formbasic" prependId="false" class="form-horizontal form-bordered">  
+
+                    <section class="page-header" style="padding-bottom: 10px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <ul class="breadcrumb" style="width: 80%">
+                                        <li><a href="#">Home</a></li>
+                                        <li class="active">Search</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-8">  </div>
+                                <div class="col-lg-4">
+
+                                    <pri:commandButton  id="tblBtn" update=":tblpanel :igvpanel :graphpanel :graphpanelsinglechr"
+                                                        class="btn btn-sm btn-primary"
+                                                        action="#{snpHomeBean.setFlagValue('table')}" value="Table" 
+                                                        onstart="PF('blockUIWidget').block()"  
+                                                        oncomplete="PF('blockUIWidget').unblock()">
+                                    </pri:commandButton>
+
+
+                                    <pri:commandButton  id="GraphBtn" 
+                                                        class="btn btn-sm btn-primary" style=""
+                                                        action="#{snpHomeBean.setFlagValue('graph')}" value="Graph" 
+                                                        onstart="PF('blockUIWidget').block()"  
+                                                        oncomplete="PF('blockUIWidget').unblock()"/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <aside class="nav-secondary" id="navSecondary" data-plugin-sticky="data-plugin-sticky" 
+                           data-plugin-options="{'minWidth': 991, 'padding': {'top': 91}}">
+                        <div class="container" style="margin-top: 10px;">
+                            <div class="row" style="font-size: 19px;font-weight: bolder;color: midnightblue">
+                                <div class="col-sm-4">
+                                    <h:outputLabel value="Chromosome " rendered="#{!snpHomeBean.checkAdvflag}"/>                                    
+                                    <h:outputLabel value="Gane Id : " rendered="#{snpHomeBean.checkAdvflag}"/><h:outputLabel value="#{snpHomeBean.geneId}" rendered="#{snpHomeBean.checkAdvflag}"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h:outputLabel value="Set 1 : "/><h:outputLabel value="#{snpHomeBean.selectedChickenLineInfoSetOne}"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h:outputLabel value="Set 2 : "/><h:outputLabel value="#{snpHomeBean.selectedChickenLineInfoSetTwo}"/>
+                                </div>
+
+
+                                <div class="col-sm-4"><h:outputLabel value="#{snpHomeBean.chromosome}" rendered="#{!snpHomeBean.checkAdvflag}"/></div>
+                                <div class="col-sm-4">
+                                    <h:outputLabel value="Start Position : " rendered="#{!snpHomeBean.checkAdvflag}"/><h:outputLabel value="#{snpHomeBean.startPosition}" rendered="#{!snpHomeBean.checkAdvflag}"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h:outputLabel value="End Position : " rendered="#{!snpHomeBean.checkAdvflag}"/><h:outputLabel value="#{snpHomeBean.endPosition}" rendered="#{!snpHomeBean.checkAdvflag}"/>
+                                </div>                               
+                            </div>
+
+                        </div>
+                    </aside>
+                    <pri:panel rendered="#{snpHomeBean.strList.size()==0}">
+                        <div class="container">
+                            <div class="row">
+                               
+                                           
+                                    <h:outputLabel  value="Data Not Found" style="color: #dd200f;font-size: 25px;font-weight: bold"/>
+                                 
+                            </div>
+                        </div>
+                    </pri:panel>
+                     
+                    
+
+                    <div class="container">
+                        <div class="row">
+                            
+                            <table style="border: 1px;width: 100%">
+                                <tr>
+                                    <td colspan="2">
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 60%">
+                                                    <pri:panel id="tblpanellabel" rendered="#{snpHomeBean.tblFlag}" style="border: 0px;">
+
+                                                        <div class="counter counter-primary" style="width: 90%;margin-left: 40px;">
+                                                            <label  style="display: inline;font-weight: bold;font-size: 25px;line-height: 25px"> Total SNP : </label>
+                                                            <strong data-to=" #{snpHomeBean.strList.size()}" data-append=""  style="font-size: 30px;display: inline;color: green"> 
+                                                                #{snpHomeBean.strList.size()}</strong>                                                   
+
+                                                        </div>
+
+
+                                                    </pri:panel>
+                                                    
+                                                </td>
+                                                <td style="width: 40%;">
+<!--                                                    <pri:panel id="tblpaneldownload" rendered="#//{snpHomeBean.tblFlag}" style="border: 0px;">
+                                                        <span class="badge badge-secondary text-light badge-md" style="margin-right: 0px;">
+                                                            <h:commandLink action="#//{snpHomeBean.saveTxt()}" value="Download Table" style="color: white;">
+                                                                <pri:graphicImage name="images/export_icon.jpg" width="24" alt="Download Table"/>                                        
+                                                            </h:commandLink>                                    
+                                                        </span>
+                                                    </pri:panel>-->
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <pri:panel id="graphpanelsinglechr" rendered="#{snpHomeBean.singlechromosomesearchflag}" style="border: 0px;">
+
+
+                                        </pri:panel>
+
+                                        <pri:panel id="graphpanel" rendered="#{snpHomeBean.graphFlag and snpHomeBean.retrieveVCFStatisticRecords.size()!=0}" style="border: 0px;">
+                                            <div class="row">
+                                                <div class="col-lg-12">                                              
+
+                                                    <pri:chart type="bar" model="#{snpHomeBean.barModel}" 
+                                                               style="height: 400px;width: 100%;" 
+                                                               id="barchart1"
+                                                               rendered="#{!snpHomeBean.singlechromosomesearchflag and snpHomeBean.retrieveVCFStatisticRecords.size() &gt; 7}">
+                                                        <pri:ajax event="itemSelect" listener="#{snpHomeBean.itemSelect}" 
+                                                                  update=":piechart piechartdetails :dlg_options"/>
+                                                    </pri:chart>  
+
+                                                </div>                                                
+                                            </div>
+                                            <pri:panel rendered="#{snpHomeBean.selectedStatisticBean.chromosome!=null}" style="border: none">
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <pri:chart type="bar" model="#{snpHomeBean.barModel}" 
+                                                                   style="height: 400px;" 
+                                                                   id="barchart2"
+                                                                   rendered="#{!snpHomeBean.singlechromosomesearchflag and snpHomeBean.retrieveVCFStatisticRecords.size() &lt; 7}">
+                                                            <pri:ajax event="itemSelect" listener="#{snpHomeBean.itemSelect}" 
+                                                                      update=":piechart :piechart1 piechartdetails :dlg_options"/>
+                                                        </pri:chart>
+                                                        <pri:chart type="bar" model="#{snpHomeBean.barModel}" 
+                                                                   style="height: 400px;width: 350px;" 
+                                                                   id="barchartsingle"
+                                                                   rendered="#{snpHomeBean.singlechromosomesearchflag}">
+                                                            <pri:ajax event="itemSelect" listener="#{snpHomeBean.itemSelect}" 
+                                                                      update=":piechart piechartdetails :dlg_options"/>
+                                                        </pri:chart>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <pri:chart type="pie" model="#{snpHomeBean.pieModel1}" responsive="true" 
+                                                                   rendered="#{!snpHomeBean.singlechromosomesearchflag and snpHomeBean.retrieveVCFStatisticRecords.size() &lt; 7 }"
+                                                                   style="width: 500px;height:450px;;" 
+                                                                   id="piechart2">
+                                                        </pri:chart>
+
+
+
+                                                        <pri:chart type="pie" model="#{snpHomeBean.pieModel1}" responsive="true" 
+                                                                   rendered="#{snpHomeBean.singlechromosomesearchflag}"
+                                                                   style="width: 500px;height:450px;;" 
+                                                                   id="piechart">
+                                                            <!--                                                             <pri:ajax event="itemSelect" listener="#//{snpHomeBean.itemSelect}" 
+                                                                                                                                  update=":piechart :piechart1 piechartdetails :dlg_options"/>-->
+                                                        </pri:chart>
+                                                    </div>
+                                                </div>
+                                            </pri:panel>
+                                            
+
+
+                                        </pri:panel>
+
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <pri:panel id="tblpanel" rendered="#{snpHomeBean.tblFlag}" style="border: 0px;">
+                                            <pri:dataTable id="tbl" value = "#{snpHomeBean.strList}" var = "sequence"  
+                                                           p:data-sort-id="portfolio"  rows="25" paginator="true"
+                                                           paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+
+                                                           class="table table-responsive-lg table-bordered table-striped table-sm mb-0">
+
+                                                <pri:column>    				
+                                                    <f:facet name = "header">Chromosome</f:facet>    				
+                                                        #{sequence.chromosome}
+                                                </pri:column>
+
+                                                <pri:column>
+                                                    <f:facet name = "header">Position</f:facet>
+                                                        #{sequence.chromosome_Position}
+                                                </pri:column>
+
+                                                <pri:column>
+                                                    <f:facet name = "header">Ref</f:facet>
+                                                        #{sequence.ref}
+                                                </pri:column>
+
+                                                <pri:column>
+                                                    <f:facet name = "header">SetOne</f:facet>
+                                                        #{sequence.setOne}
+                                                </pri:column>
+                                                <pri:column>
+                                                    <f:facet name = "header">SetTwo</f:facet>
+                                                        #{sequence.setTwo}
+                                                </pri:column>
+
+                                                <pri:dataList value="#{sequence.geneList}" var="gene" >
+                                                    #{sequence.geneList}
+                                                </pri:dataList>
+
+                                                <pri:column>
+                                                    <f:facet name = "header">Gene Name</f:facet>
+                                                    <ui:repeat value="#{sequence.geneList}" var="a">
+                                                        <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                    </ui:repeat>
+
+                                                </pri:column>
+
+                                            </pri:dataTable>
+                                        </pri:panel>
+
+
+
+
+                                        <pri:panel id="igvpanel" rendered="#{snpHomeBean.igvFlag}" style="border: 0px;">
+                                            <h:outputStylesheet library="igv" name="igv/jquery-ui.css"/>
+                                            <h:outputStylesheet library="igv" name="font-awesome.min.css"/>
+
+                                            <h:outputStylesheet library="igv" name="igv-1.0.9.css"/>
+                                            <h:outputScript library="igv" name="jquery.min.js"/>
+                                            <h:outputScript library="igv" name="jquery-ui.min.js"/>
+                                            <h:outputScript library="igv" name="igv-1.0.9.js"/>
+
+
+
+                                            <p>
+                                            </p>
+
+
+                                            <div id="trackList">
+
+
+                                                <div onclick="igv.browser.loadTrack({
+                                                            url: 'https://s3-us-west-2.amazonaws.com/ilmn.igv-test/test2.bigWig',
+                                                            min: 1,
+                                                            name: 'Big BigWig'
+                                                        })"> 
+                                                </div>
+                                            </div>
+
+                                            <div id="igvDiv" style="padding-top: 10px;padding-bottom: 10px; border:0px solid lightgray;heigh:500px;">
+
+                                            </div>
+
+
+
+
+                                        </pri:panel>
+
+
+
+                                    </td>
+                                </tr>
+
+                                <pri:outputPanel rendered="#{snpHomeBean.graphFlag and snpHomeBean.strList.size()!=0}">
+                                    <tr>
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 100%;margin-left: 70px;">
+
+                                                </td>
+                                            </tr>
+                                            <tr style="vertical-align: top  ">
+                                                <td style="width: 70%">
+                                                    <pri:panel rendered="#{snpHomeBean.selectedStatisticBean!=null and snpHomeBean.graphFlag 
+                                                                           and snpHomeBean.retrieveVCFStatisticRecords.size()!=0}" 
+                                                               id="piechartdetails" style="border: 0px;">
+                                                        <table style="width: 100%;margin-left: 70px;color: orange;font-size: 20px;">
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-4">
+                                                                            <h:outputLabel  value="Chromosome : #{snpHomeBean.retrieveVCFStatisticRecords.size()}"/>
+                                                                            <h:outputLabel value="#{snpHomeBean.selectedStatisticBean.chromosome}" />
+                                                                        </div>
+                                                                        <div class="col-sm-4">
+                                                                            <h:outputLabel value="Total Hits :"/>  
+                                                                            <h:outputLabel value="#{snpHomeBean.selectedStatisticBean.counter}" />
+                                                                        </div>
+                                                                        <br/>
+                                                                        <h:outputLabel value="Details :"/>
+                                                                        <span class="arrow vbl"></span>
+                                                                    </div>
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <table style="width: 100%;">
+                                                                        <tr>
+                                                                            <td style="width: 25%">
+                                                                                <div class="col-lg-12">
+                                                                                    <table class="table table-bordered table-striped " >
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="cl_AA" oncomplete="PF('dlg_options').show();" 
+                                                                                                                 actionListener="#{snpHomeBean.xx('A/A')}" update=":dlg_options"
+                                                                                                                 >                                                                                                     
+                                                                                                    <h:outputLabel value="A/" style="color: green;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="A" style="color: green;cursor: pointer;;font-weight: bold"/>    
+                                                                                                </pri:commandLink>                                                                                                
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.a_A}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="clAT"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('A/T')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="A/" style="color: green;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="T" style="color: green;cursor: pointer;;font-weight: bold"/>    
+                                                                                                </pri:commandLink>
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.a_T}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="clAC"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('A/C')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="A/" style="color: green;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="C" style="color: blue;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.a_C}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="clAG"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('A/G')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="A/" style="color: green;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="G" style="color: orange;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.a_G}"/></td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td style="width: 25%">
+                                                                                <div class="col-lg-12" >
+                                                                                    <table class="table table-bordered table-striped mb-0" >
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="clTA"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('T/A')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="T/" style="color: green;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="A" style="color: orange;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>                                                                                               
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.t_A}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="clTT"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('T/T')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="T/"   style="color: red;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="T" style="color: red;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink> 
+
+
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.t_T}" /></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+
+
+                                                                                                <pri:commandLink id="clTC"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('T/C')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="T/"  style="color: red;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="C" style="color: blue;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink> 
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.t_C}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="clTG"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('T/G')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="T/"  style="color: red;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="G" style="color: orange;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.t_G}"/></td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td style="width: 25%">
+                                                                                <div class="col-lg-12" >
+                                                                                    <table class="table table-bordered table-striped mb-0" >
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="clCA"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('C/A')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="C/"  style="color: blue;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="A"  style="color: green;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.c_A}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+
+
+                                                                                                <pri:commandLink id="clCT"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('C/T')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="C/"  style="color: blue;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="T" style="color: red;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.c_T}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+
+
+                                                                                                <pri:commandLink id="clCC"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('C/C')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="C/" style="color: blue;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="C" style="color: blue;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.c_C}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="clCG"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('C/G')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="C/" style="color: blue;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="G" style="color: orange;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.c_G}"/></td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </td>
+                                                                            <td style="width: 25%">
+                                                                                <div class="col-lg-12" >
+                                                                                    <table class="table table-bordered table-striped mb-0" >
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="clGA"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('G/A')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="G/"  style="color: red;font-weight: bold;;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="A"  style="color: green;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.g_A}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+
+
+                                                                                                <pri:commandLink id="clGT"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('G/T')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="G/" style="color: red;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="T" style="color: red;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.g_T}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <pri:commandLink id="clGC"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('G/C')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="G/" style="color: red;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="C" style="color: blue;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.g_C}"/></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+
+                                                                                                <pri:commandLink id="clGG"  oncomplete="PF('dlg_options').show();" update=":dlg_options"
+                                                                                                                 actionListener="#{snpHomeBean.xx('G/G')}" >                                                                                                     
+                                                                                                    <h:outputLabel value="G/" style="color: red;font-weight: bold;cursor: pointer;"/>
+                                                                                                    <h:outputLabel value="G" style="color: orange;font-weight: bold;cursor: pointer;"/>
+                                                                                                </pri:commandLink>
+
+
+                                                                                            </td>
+                                                                                            <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.g_G}"/></td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+
+                                                                </td>
+
+                                                            </tr>
+
+                                                        </table>
+
+                                                    </pri:panel>
+                                                    
+                                                    
+
+                                                    <pri:dialog id="dlg_options" header="A/A" widgetVar="dlg_options" minHeight="40" width="50%">
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('A/A')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('A/A')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+
+                                                            <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>                                                           
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" rendered="#{snpHomeBean.displayoption.equals('A/T')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('A/T')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+
+                                                            <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>                                                            </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" rendered="#{snpHomeBean.displayoption.equals('A/C')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('A/C')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" rendered="#{snpHomeBean.displayoption.equals('A/G')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('A/G')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('T/A')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('T/A')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('T/T')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('T/T')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('T/C')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('T/C')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('T/G')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('T/G')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('C/A')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('C/A')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('C/T')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('C/T')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('C/C')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('C/C')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('C/G')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('C/G')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('G/A')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('G/A')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('G/T')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('G/T')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('G/C')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('G/C')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+                                                        <pri:dataTable var="car" style="width: 100%" 
+                                                                       rendered="#{snpHomeBean.displayoption.equals('G/G')}"  
+                                                                       value="#{snpHomeBean.selectedStatisticBean.map1.get('G/G')}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+                                                            <pri:column headerText="Ref">
+                                                                <h:outputText value="#{car.ref}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                             <pri:column>
+                                                                <f:facet name = "header">Gene Name</f:facet>
+                                                                <ui:repeat value="#{car.geneList}" var="a">
+                                                                    <a href="http://grch37.ensembl.org/#{uploadBean.organismScientificName}/Gene/Summary?g=#{a}" target="_blank" > #{a} </a>                                                        
+                                                                </ui:repeat>
+
+                                                            </pri:column>    
+                                                        </pri:dataTable>
+                                                    </pri:dialog>
+
+
+                                                </td>
+                                                <td style="width: 30%">
+
+                                                    <pri:chart type="pie" model="#{snpHomeBean.pieModel1}" responsive="true" 
+                                                               rendered="#{snpHomeBean.retrieveVCFStatisticRecords.size() &gt; 7}"
+                                                               style="width:400px;height:450px;;" 
+                                                               id="piechart1">
+                                                        <!--                                                         <pri:ajax event="itemSelect" listener="#//{snpHomeBean.itemSelect}" 
+                                                                                                                              update=":piechart :piechart1 piechartdetails :dlg_options"/>-->
+
+                                                    </pri:chart>
+
+
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+
+
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+
+
+
+                                        </td>
+                                    </tr>
+                                </pri:outputPanel>
+                            </table>
+
+
+                        </div>
+                        <style type="text/css">
+
+                            #barchart1 .jqplot-point-label {
+                                border: 1.5px solid #aaaaaa;
+                                font-size: 20px;
+                                font-weight: bold;
+                                padding: 1px 3px;
+                            }
+
+                            .jqplot-data-label{
+                                font-size: 15px;
+                                font-weight: bold;
+                                color: white;
+                            }
+
+                            #barchart2 .jqplot-point-label {
+                                border: 1.5px solid #aaaaaa;
+                                font-size: 20px;
+                                font-weight: bold;
+                                padding: 1px 3px;
+                            }
+
+                        </style>
+                        <script>
+                            function customExtender() {
+                                this.cfg.shadow = false;
+                                this.cfg.title = '';
+                                this.cfg.grid = {
+                                    background: '#ffffff',
+                                    borderColor: '#fafafa',
+                                    gridLineColor: '#edeaea',
+                                    shadow: false
+                                };
+                                this.cfg.axesDefaults = {
+                                    rendererOptions: {
+                                        textColor: '#666F77',
+                                    }
+                                };
+                                this.cfg.axes.xaxis.label = {
+                                    fontFamily: 'Helvetica',
+                                    fontSize: '14pt'
+                                };
+                                this.cfg.axes.yaxis.label = {
+                                    fontFamily: 'Helvetica',
+                                    fontSize: '10pt'
+                                };
+
+                                this.cfg.axes.yaxis.tickOptions = {
+                                    formatString: '%d',
+                                    fontSize: '15pt'
+                                };
+                                this.cfg.axes.xaxis.tickOptions = {
+                                    fontSize: '15pt'
+                                };
+
+                                this.cfg.seriesDefaults.rendererOptions.varyBarColor = true;
+                            }
+                        </script>
+                        <script>
+                            (function (i, s, o, g, r, a, m) {
+                                i['GoogleAnalyticsObject'] = r;
+                                i[r] = i[r] || function () {
+                                    (i[r].q = i[r].q || []).push(arguments)
+                                }, i[r].l = 1 * new Date();
+                                a = s.createElement(o),
+                                        m = s.getElementsByTagName(o)[0];
+                                a.async = 1;
+                                a.src = g;
+                                m.parentNode.insertBefore(a, m)
+                            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                            ga('create', 'UA-92237317-1', 'auto');
+                            ga('send', 'pageview');
+                        </script>
+
+
+
+                        <script>
+                            function customPieExtender() {
+
+                                this.cfg.shadow = false;
+                                this.cfg.title = '';
+                                this.cfg.grid = {
+                                    background: '#ffffff',
+                                    borderColor: '#ffffff',
+                                    gridLineColor: '#edeaea',
+                                    shadow: false
+                                };
+                                this.cfg.highlighter = {
+                                    show: true,
+                                    tooltipLocation: 'n',
+                                    useAxesFormatters: false,
+                                    formatString: '%s = %d',
+                                    fontFamily: 'Helvetica',
+                                    fontSize: '20pt'
+                                };
+//                            this.cfg.dataLabelPositionFactor = 10;
+                                this.cfg.dataLabelCenterOn = false
+//                            this.cfg.axesDefaults = {
+//                                    rendererOptions: {
+//                                        textColor: '#edeaea',
+//                                        fontFamily:'Helvetica',
+//                                        fontSize: '14pt'
+//                                    }
+//                                };
+
+                            }
+                        </script>
+                        <!--<h:outputScript name="js/extendedPieRenderer.js"/>-->
+                        <!--<h:outputScript name="js/jqplot.enhancedPieLegendRenderer.js"/>-->
+
+                    </div>
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

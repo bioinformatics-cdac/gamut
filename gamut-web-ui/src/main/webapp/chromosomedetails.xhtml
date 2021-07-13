@@ -1,0 +1,176 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+
+                <h:outputScript library="vendor/jquery" name="jquery.min.js"/>
+
+                <h:outputScript library="vendor/rs-plugin/css" name="settings.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="layers.css"/>
+                <h:outputScript library="vendor/rs-plugin/css" name="navigation.css"/>
+
+                <div role="main" class="main">
+
+                    <section class="page-header">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <ul class="breadcrumb">
+                                        <li><a href="#">Home</a></li>
+                                        <li class="active">Pages</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h1>Careers</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="container">
+
+                        <h2><strong>Rockstars</strong> wanted!</h2>
+
+                        <div class="row">
+                            <div class="col">
+                                <p class="lead">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum pellentesque imperdiet. Nulla lacinia iaculis nulla non pulvinar. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eu risus enim, ut pulvinar lectus. Sed hendrerit nibh metus.
+                                </p>
+                            </div>
+                        </div>
+
+                        <hr/>
+
+                        <ui:repeat value="#{snpHomeBean.retrieveVCFStatisticRecords}" var="snp">
+                                               
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="toggle toggle-primary mt-4" data-plugin-toggle="data-plugin-toggle">
+                                    <section class="toggle">
+                                        <label>Chromosome <h:outputLabel value="#{snp.chromosome}" style="font-weight: bold;margin-left: 10px;"/> Details</label>
+                                        <div class="toggle-content">
+                                            <div class="row" style="margin-left: 20px;">                                                    
+                                                <div class="col-lg-12">
+                                                    <h:outputLabel value="Total"/>
+                                                    <h:outputLabel value="#{snp.counter}" style="font-weight: bold;margin-left: 10px;"/>
+                                                    <br/>
+                                                </div>                                                        
+
+                                                <div class="col-sm-1">
+
+                                                    <table class="table table-bordered table-striped mb-0">
+                                                        <tr>
+                                                            <td><h:outputLabel value="A/A"/></td>
+                                                            <td><h:outputLabel value="#{snp.a_A}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="A/T"/></td>
+                                                            <td><h:outputLabel value="#{snp.a_T}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="A/C"/></td>
+                                                            <td><h:outputLabel value="#{snp.a_C}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="A/G"/></td>
+                                                            <td><h:outputLabel value="#{snp.a_G}"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <table class="table table-bordered table-striped mb-0">
+                                                        <tr>
+                                                            <td><h:outputLabel value="T/A"/></td>
+                                                            <td><h:outputLabel value="#{snp.t_A}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="T/T"/></td>
+                                                            <td><h:outputLabel value="#{snp.t_T}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="T/C"/></td>
+                                                            <td><h:outputLabel value="#{snp.t_C}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="T/G"/></td>
+                                                            <td><h:outputLabel value="#{snp.t_G}"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <table class="table table-bordered table-striped mb-0">
+                                                        <tr>
+                                                            <td><h:outputLabel value="C/A"/></td>
+                                                            <td><h:outputLabel value="#{snp.c_A}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="C/T"/></td>
+                                                            <td><h:outputLabel value="#{snp.c_T}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="C/C"/></td>
+                                                            <td><h:outputLabel value="#{snp.c_C}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="C/G"/></td>
+                                                            <td><h:outputLabel value="#{snp.c_G}"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <table class="table table-bordered table-striped mb-0">
+                                                        <tr>
+                                                            <td><h:outputLabel value="G/A"/></td>
+                                                            <td><h:outputLabel value="#{snp.g_A}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="G/T"/></td>
+                                                            <td><h:outputLabel value="#{snp.g_T}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="G/C"/></td>
+                                                            <td><h:outputLabel value="#{snp.g_C}"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><h:outputLabel value="G/G"/></td>
+                                                            <td><h:outputLabel value="#{snp.g_G}"/></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </section>                                    
+
+                                </div>
+                            </div>
+
+                        </div>
+                        </ui:repeat>
+                    </div>
+
+                </div>
+
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.tools.min.js"/>
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.revolution.min.js"/>
+                <h:outputScript library="js/views" name="view.contact.js"/>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+
+    </h:head>
+    <h:body class="home image-sphere-style responsive yes_js">
+        <f:view contentType="text/html">
+              <ui:composition template="template/commonLayoutHome.xhtml">
+                <ui:define name="content">
+
+<section class="page-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="breadcrumb" style="font-size: 22px;">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active">Configuration</li>
+                                </ul>
+                            </div>
+                        </div>                        
+                    </div>
+                </section>
+
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="portfolio-title">
+                              
+                            </div>
+
+                            <!--<hr class="tall"/>-->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+
+                        </div>
+
+                        <div class="col-lg-8">
+
+                           
+                                    <h:form id="formconfigure" prependId="false" > 
+                                        <h:messages id="msgadv" style="color: red;"/>
+                                        <h:panelGrid columns="2">
+
+
+                                            <h:outputLabel value="Mongodb host IP : "/>
+                                            <h:inputText value="#{configurationBean.mongodbIP}"/>
+
+                                            <h:outputLabel value="Mongodb Port : "/>
+                                            <h:inputText value="#{configurationBean.mongoPort}"/>
+
+                                            <h:outputLabel value="Mongodb Database Name : "/>
+                                            <h:inputText value="#{configurationBean.database}"/>
+                                            
+                                            <h:outputLabel value="VCF Collection Name : "/>
+                                            <h:inputText value="#{configurationBean.vcfcollectioname}"/>
+                                            
+                                            <h:outputLabel value="Gene Collection Name : "/>
+                                            <h:inputText value="#{configurationBean.ganecollectionname}"/>
+
+                                            <pri:commandButton id="saveBtn" ajax="false" 
+                                                               action="#{configurationBean.submit()}" value="Submit" />
+
+                                        </h:panelGrid>
+
+                                    </h:form>
+                                
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.tools.min.js"/>
+                <h:outputScript library="vendor/rs-plugin/js" name="jquery.themepunch.revolution.min.js"/>
+                <h:outputScript library="js/views" name="view.contact.js"/>
+
+
+            </ui:define>
+            </ui:composition>
+        </f:view>
+    </h:body>
+</html>

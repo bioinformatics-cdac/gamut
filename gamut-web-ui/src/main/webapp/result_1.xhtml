@@ -1,0 +1,646 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+                <h:outputScript library="js" name="Chart.js"/>
+                <!--<h:outputScript library="vendor/jquery" name="jquery.min.js"/>-->
+                <h:form id="formbasic" prependId="false" class="form-horizontal form-bordered">  
+
+                    <section class="page-header" style="padding-bottom: 10px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <ul class="breadcrumb" style="width: 80%">
+                                        <li><a href="#">Home</a></li>
+                                        <li class="active">Search</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-8">  </div>
+                                <div class="col-lg-4">
+
+                                    <pri:commandButton  id="tblBtn" update=":tblpanel :igvpanel :graphpanel :graphpanelsinglechr"
+                                                        class="btn btn-sm btn-primary"
+                                                        action="#{snpHomeBean.setFlagValue('table')}" value="Table" 
+                                                        onstart="PF('blockUIWidget').block()"  
+                                                        oncomplete="PF('blockUIWidget').unblock()">
+                                    </pri:commandButton>
+
+                                    <pri:commandButton  id="IGVBtn" 
+                                                        class="btn btn-sm btn-primary" style="width: 150px;"
+                                                        action="#{snpHomeBean.setFlagValue('IGV')}" value="IGV Visualizer" 
+                                                        onstart="PF('blockUIWidget').block()"  
+                                                        oncomplete="PF('blockUIWidget').unblock()"/>
+
+                                    <pri:commandButton  id="GraphBtn" 
+                                                        class="btn btn-sm btn-primary" style="width: 150px;"
+                                                        action="#{snpHomeBean.setFlagValue('graph')}" value="Graph" 
+                                                        onstart="PF('blockUIWidget').block()"  
+                                                        oncomplete="PF('blockUIWidget').unblock()"/>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <aside class="nav-secondary" id="navSecondary" data-plugin-sticky="data-plugin-sticky" 
+                           data-plugin-options="{'minWidth': 991, 'padding': {'top': 91}}">
+                        <div class="container" style="margin-top: 10px;">
+                            <div class="row" style="font-size: 19px;font-weight: bolder;color: midnightblue">
+                                <div class="col-sm-4">
+                                    <h:outputLabel value="Set 1 :"/><h:outputLabel value="#{snpHomeBean.selectedChickenLineInfoSetOne}"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h:outputLabel value="Set 2 :"/><h:outputLabel value="#{snpHomeBean.selectedChickenLineInfoSetTwo}"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h:outputLabel value="Chromosome :"/><h:outputLabel value="#{snpHomeBean.chromosome}"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h:outputLabel value="Start Position :"/><h:outputLabel value="#{snpHomeBean.startPosition}"/>
+                                </div>
+                                <div class="col-sm-4">
+                                    <h:outputLabel value="End Position :"/><h:outputLabel value="#{snpHomeBean.endPosition}"/>
+                                </div>
+
+                            </div>
+                        </div>
+                    </aside>
+
+                    <div class="container">
+                        <div class="row">
+
+                            <table style="border: 1px;width: 100%">
+                                <tr>
+                                    <td colspan="2">
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 60%"><pri:panel id="tblpanellabel" rendered="#{snpHomeBean.tblFlag}" style="border: 0px;">
+                                                        <div class="counter counter-primary" style="width: 90%;margin-left: 40px;">
+                                                            <label  style="display: inline;font-weight: bold;font-size: 25px;line-height: 25px"> Total SNP : </label>
+                                                            <strong data-to=" #{snpHomeBean.strList.size()}" data-append=""  style="font-size: 30px;display: inline;color: green"> 
+                                                                #{snpHomeBean.strList.size()}</strong>                                                   
+
+                                                        </div>
+                                                    </pri:panel></td>
+                                                <td style="width: 40%;">
+                                                    <pri:panel id="tblpaneldownload" rendered="#{snpHomeBean.tblFlag}" style="border: 0px;">
+                                                        <span class="badge badge-secondary text-light badge-md" style="margin-right: 0px;">
+                                                            <h:commandLink action="#{snpHomeBean.saveTxt()}" value="Download Table" style="color: white;">
+                                                                <!--<pri:graphicImage name="images/export_icon.jpg" width="24" alt="Download Table"/>-->                                        
+                                                            </h:commandLink>                                    
+                                                        </span>
+                                                    </pri:panel>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <pri:panel id="graphpanelsinglechr" rendered="#{snpHomeBean.singlechromosomesearchflag}" style="border: 0px;">
+
+
+                                            <div class="circular-bar">
+                                                <div class="circular-bar-chart" data-percent="85" 
+                                                     data-plugin-options='{ "barColor": "#0088CC", "delay": 300 }'>
+                                                    <strong>Total SNP</strong>
+                                                    <label>#{snpHomeBean.strList.size()}</label>
+                                                </div>
+                                            </div>
+
+                                        </pri:panel>
+
+                                        <pri:panel id="graphpanel" rendered="#{snpHomeBean.graphFlag}" style="border: 0px;">
+
+
+
+                                            <pri:chart type="bar" model="#{snpHomeBean.barModel}" style="height: 400px;"  rendered="#{!snpHomeBean.singlechromosomesearchflag}">
+                                                <pri:ajax event="itemSelect" listener="#{snpHomeBean.itemSelect}" 
+                                                          update=":piechart piechartdetails"/>
+                                            </pri:chart>  
+                                        </pri:panel>
+
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <pri:panel id="tblpanel" rendered="#{snpHomeBean.tblFlag}" style="border: 0px;">
+                                            <pri:dataTable id="tbl" value = "#{snpHomeBean.strList}" var = "sequence"  
+                                                           p:data-sort-id="portfolio"  rows="25" paginator="true"
+                                                           paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+
+                                                           class="table table-responsive-lg table-bordered table-striped table-sm mb-0">
+
+                                                <pri:column>    				
+                                                    <f:facet name = "header">Chromosome</f:facet>    				
+                                                        #{sequence.chromosome}
+                                                </pri:column>
+
+                                                <pri:column>
+                                                    <f:facet name = "header">Position</f:facet>
+                                                        #{sequence.chromosome_Position}
+                                                </pri:column>
+
+                                                <pri:column>
+                                                    <f:facet name = "header">Ref</f:facet>
+                                                        #{sequence.ref}
+                                                </pri:column>
+
+                                                <pri:column>
+                                                    <f:facet name = "header">SetOne</f:facet>
+                                                        #{sequence.setOne}
+                                                </pri:column>
+                                                <pri:column>
+                                                    <f:facet name = "header">SetTwo</f:facet>
+                                                        #{sequence.setTwo}
+                                                </pri:column>
+
+                                            </pri:dataTable>
+                                        </pri:panel>
+
+
+
+
+                                        <pri:panel id="igvpanel" rendered="#{snpHomeBean.igvFlag}" style="border: 0px;">
+                                            <h:outputStylesheet library="igv" name="igv/jquery-ui.css"/>
+                                            <h:outputStylesheet library="igv" name="font-awesome.min.css"/>
+
+                                            <h:outputStylesheet library="igv" name="igv-1.0.9.css"/>
+                                            <h:outputScript library="igv" name="jquery.min.js"/>
+                                            <h:outputScript library="igv" name="jquery-ui.min.js"/>
+                                            <h:outputScript library="igv" name="igv-1.0.9.js"/>
+
+
+
+                                            <p>
+                                            </p>
+
+
+                                            <div id="trackList">
+
+
+                                                <div onclick="igv.browser.loadTrack({
+                                                            url: 'https://s3-us-west-2.amazonaws.com/ilmn.igv-test/test2.bigWig',
+                                                            min: 1,
+                                                            name: 'Big BigWig'
+                                                        })"> 
+                                                </div>
+
+                                                <div onclick="igv.browser.loadTrack({
+                                                            url: '/uploadfiles/chr15_8sample.vcf.recode.vcf.gz',
+                                                            indexURL: '/uploadfiles/chr15_8sample.vcf.recode.vcf.gz.tbi',
+                                                            visibilityWindow: 20000,
+                                                            name: 'CHR 15'
+                                                        })">
+                                                </div>
+
+                                            </div>
+
+                                            <div id="igvDiv" style="padding-top: 10px;padding-bottom: 10px; border:0px solid lightgray;heigh:500px;">
+
+                                            </div>
+
+
+
+
+                                        </pri:panel>
+
+
+
+                                    </td>
+                                </tr>
+                                <tr><td colspan="2"><hr/></td></tr>
+                                <pri:outputPanel rendered="#{snpHomeBean.graphFlag}">
+                                    <tr>
+                                        <table style="width: 100%">
+                                            <tr>
+                                                <td style="width: 100%;margin-left: 70px;">
+                                                    <b> Details regarding All parameters</b>
+                                                </td>
+                                            </tr>
+                                            <tr style="vertical-align: top  ">
+                                                <td style="width: 60%">
+
+                                                    <table style="width: 100%;margin-left: 70px;">
+                                                        <tr>
+                                                            <td>
+
+                                                                <table style="width: 100%;">
+                                                                    <tr>
+                                                                        <td style="width: 25%">
+                                                                            <div class="col-lg-12">
+                                                                                <table class="table table-bordered table-striped " >
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            <h:outputLabel value="A"  style="color: green;font-weight: bold"/>/<h:outputLabel value="A"  style="color: green;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.a_A}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="A" style="color: green;font-weight: bold"/>/<h:outputLabel value="T" style="color: red;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.a_T}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="A" style="color: green;font-weight: bold"/>/<h:outputLabel value="C" style="color: blue;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.a_C}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="A" style="color: green;font-weight: bold"/>/<h:outputLabel value="G" style="color: orange;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.a_G}"/></td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td style="width: 25%">
+                                                                            <div class="col-lg-12" >
+                                                                                <table class="table table-bordered table-striped mb-0" >
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="T"  style="color: red;font-weight: bold"/>/<h:outputLabel value="A"  style="color: green;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.t_A}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="T"   style="color: red;font-weight: bold"/>/<h:outputLabel value="T" style="color: red;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.t_T}" /></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="T"  style="color: red;font-weight: bold"/>/<h:outputLabel value="C" style="color: blue;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.t_C}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="T"  style="color: red;font-weight: bold"/>/<h:outputLabel value="G" style="color: orange;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.t_G}"/></td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td style="width: 25%">
+                                                                            <div class="col-lg-12" >
+                                                                                <table class="table table-bordered table-striped mb-0" >
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="C"  style="color: blue;font-weight: bold"/>/<h:outputLabel value="A"  style="color: green;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.c_A}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="C"  style="color: blue;font-weight: bold"/>/<h:outputLabel value="T" style="color: red;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.c_T}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="C" style="color: blue;font-weight: bold"/>/<h:outputLabel value="C" style="color: blue;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.c_C}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="C" style="color: blue;font-weight: bold"/>/<h:outputLabel value="G" style="color: orange;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.c_G}"/></td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td style="width: 25%">
+                                                                            <div class="col-lg-12" >
+                                                                                <table class="table table-bordered table-striped mb-0" >
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="G"  style="color: red;font-weight: bold"/>/<h:outputLabel value="A"  style="color: green;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.g_A}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="G" style="color: red;font-weight: bold"/>/<h:outputLabel value="T" style="color: red;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.g_T}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="G" style="color: red;font-weight: bold"/>/<h:outputLabel value="C" style="color: blue;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.g_C}"/></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td><h:outputLabel value="G" style="color: red;font-weight: bold"/>/<h:outputLabel value="G" style="color: orange;font-weight: bold"/></td>
+                                                                                        <td><h:outputLabel value="#{snpHomeBean.selectedStatisticBean.g_G}"/></td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+
+                                                            </td>
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <pri:panel rendered="#{snpHomeBean.selectedStatisticBean!=null and snpHomeBean.graphFlag}" 
+                                                                           id="piechartdetails" style="border: 0px;">
+                                                                    <h:outputLabel  value="Chromosome : "/>
+                                                                    <h:outputLabel value="#{snpHomeBean.selectedStatisticBean.chromosome}" />
+                                                                    <br/>
+                                                                    <h:outputLabel value="Total Found :"/>
+                                                                    <h:outputLabel value="#{snpHomeBean.selectedStatisticBean.counter}" />
+
+
+                                                                </pri:panel>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td style="width: 40%">
+                                                    <pri:chart type="pie" model="#{snpHomeBean.pieModel1}" 
+                                                               style="width: 500px;height:450px;;" 
+                                                               id="piechart">
+
+                                                    </pri:chart>
+
+
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+
+
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>
+
+
+
+                                        </td>
+                                    </tr>
+                                </pri:outputPanel>
+                            </table>
+
+
+                            <div class="col-lg-12">                               
+
+                                <div class="row portfolio-list">
+
+
+
+                                    <div class="col-lg-12">
+                                        <div class="portfolio-item">
+
+
+                                            <!--<span class="thumb-info thumb-info-centered-icons thumb-info-no-borders">-->
+
+                                            <!--</span>-->
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="col-lg-12"> 
+
+                                <div class="row portfolio-list">
+                                    <div class="col-lg-12">
+                                        <div class="portfolio-item">
+                                            <pri:panel rendered="#{snpHomeBean.selectedStatisticBean!=null and snpHomeBean.graphFlag}" 
+                                                       style="border: 0px; ">
+                                                <div class="row">
+                                                    <div class="col-lg-4" style="margin-left: 60px; font-size: 18px;">
+                                                        <!--<strong style="margin-left: 10px;">--> 
+                                                        <!--                                                            <h:outputLabel rendered="#//{snpHomeBean.selectedStatisticBean!=null and snpHomeBean.graphFlag}" value="Chromosome :"/>
+                                                                                                                        <h:outputLabel value="#//{snpHomeBean.selectedStatisticBean.chromosome}" rendered="#//{snpHomeBean.selectedStatisticBean!=null and snpHomeBean.graphFlag}"/>-->
+                                                        <!--</strong>-->
+
+
+
+                                                    </div>
+                                                    <div class="col-lg-6" style="font-weight: bold;font-size: 18px;">                                                       
+
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        Chromosome = #{snpHomeBean.selectedStatisticBean.chromosome}
+                                                        size = #{snpHomeBean.selectedStatisticBean.listbean.size()}
+
+                                                        <pri:dataTable var="car" style="width: 100%"  value="#{snpHomeBean.selectedStatisticBean.listbean}">
+                                                            <pri:column headerText="Id">
+                                                                <h:outputText value="#{car.chromosome}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Position">
+                                                                <h:outputText value="#{car.chromosome_Position}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set One">
+                                                                <h:outputText value="#{car.setOne}" />
+                                                            </pri:column>
+
+                                                            <pri:column headerText="Set Two">
+                                                                <h:outputText value="#{car.setTwo}" />
+                                                            </pri:column>
+                                                        </pri:dataTable>
+
+                                                    </div>
+                                                </div>
+                                            </pri:panel>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <script>
+                            function customExtender() {
+//                                                        seriesColors:['#85802b', 'red', '#73C774', '#C7754C', '#17BDB8'],
+//                                                        this.cfg.grid = {
+//                                                            background: '#FFF' //Set background to white
+////                                                             gridLineColor: '#303030',
+////                                                             this.cfg.seriesDefaults.rendererOptions.varyBarColor = true;
+////                                                            drawBorder: false
+//                                                        };
+//                                                        this.cfg.seriesDefaults.rendererOptions.varyBarColor = true;
+
+
+
+                                this.cfg.shadow = false;
+                                this.cfg.title = '';
+//                                                        this.cfg.seriesColors = ['#2BB673', '#F15732'];
+                                this.cfg.grid = {
+                                    background: '#ffffff',
+                                    borderColor: '#ffffff',
+                                    gridLineColor: '#edeaea',
+                                    shadow: false
+                                };
+                                this.cfg.axesDefaults = {
+                                    rendererOptions: {
+                                        textColor: '#666F77'
+                                    }
+                                };
+                                this.cfg.axes.yaxis.tickOptions = {
+                                    formatString: '%d'
+                                };
+
+                                this.cfg.seriesDefaults.rendererOptions.varyBarColor = true;
+//                                                        this.cfg.seriesDefaults = {
+//                                                            shadow: false,
+//                                                            lineWidth: 1;
+////                                                            rendererOptions.varyBarColor = true;
+////                                                            markerOptions: {
+////                                                                shadow: false,
+////                                                                size: 7,
+////                                                                style: 'circle'
+////                                                            }
+//                                                             
+//                                                        }
+
+                            }
+                        </script>
+                        <script>
+                            (function (i, s, o, g, r, a, m) {
+                                i['GoogleAnalyticsObject'] = r;
+                                i[r] = i[r] || function () {
+                                    (i[r].q = i[r].q || []).push(arguments)
+                                }, i[r].l = 1 * new Date();
+                                a = s.createElement(o),
+                                        m = s.getElementsByTagName(o)[0];
+                                a.async = 1;
+                                a.src = g;
+                                m.parentNode.insertBefore(a, m)
+                            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                            ga('create', 'UA-92237317-1', 'auto');
+                            ga('send', 'pageview');
+                        </script>
+
+                        <script type="text/javascript">
+
+                            var div = document.getElementById('igvDiv');
+                            var options = {
+                                reference: {
+                                    id: "hg19",
+                                    fastaURL: "/uploadfiles/human_g1k_v37_decoy.fasta", //"https://s3.amazonaws.com/igv.broadinstitute.org/genomes/seq/1kg_v37/human_g1k_v37_decoy.fasta",
+                                    cytobandURL: "/uploadfiles/b37_cytoband.txt"
+                                },
+                                locus: "15:50,842,367-50,854,882",
+                                tracks: [
+                                    {
+                                        name: "Genes",
+                                        type: "annotation",
+                                        format: "bed",
+                                        sourceType: "file",
+                                        url: "/uploadfiles/refGene.hg19.bed.gz", //"https://s3.amazonaws.com/igv.broadinstitute.org/annotations/hg19/genes/refGene.hg19.bed.gz",
+                                        indexURL: "/uploadfiles/refGene.hg19.bed.gz.tbi", //"https://s3.amazonaws.com/igv.broadinstitute.org/annotations/hg19/genes/refGene.hg19.bed.gz.tbi",
+                                        order: Number.MAX_VALUE,
+                                        visibilityWindow: 300000000,
+                                        displayMode: "EXPANDED"
+                                    }
+                                    ,
+                                    {
+                                        name: "CHROMOSOME 15",
+                                        format: "vcf",
+                                        //                url: "/uploadfiles/chr15_8sample.vcf.recode.vcf.gz",
+                                        //                indexURL: "/uploadfiles/chr15_8sample.vcf.recode.vcf.gz.tbi",                            
+                                        url: "/uploadfiles/8sample.vcf.recode.vcf.gz", //"https://s3.amazonaws.com/1000genomes/release/20130502/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5b.20130502.sites.vcf\n\z",
+                                        indexURL: "/uploadfiles/8sample.vcf.recode.vcf.gz.tbi", //"https://s3.amazonaws.com/1000genomes/release/20130502/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5b.20130502.sites.vcf.gz.tbi",
+                                        type: "variant"
+                                    }
+                                    ,
+                                    {
+                                        url: "/uploadfiles/chr15_8sample.vcf.recode.vcf.gz",
+                                        indexURL: "/uploadfiles/chr15_8sample.vcf.recode.vcf.gz.tbi",
+                                        visibilityWindow: 20000,
+                                        name: 'CHR 15'
+                                    }
+                                ]
+
+                            };
+                            var browser = igv.createBrowser(div, options);
+                            //    
+                            //var div1 = document.getElementById('igvDiv1');
+                            //    var options1 = {
+                            //        reference: {
+                            //            id: "hg19",
+                            //            fastaURL: "/uploadfiles/human_g1k_v37_decoy.fasta",//"https://s3.amazonaws.com/igv.broadinstitute.org/genomes/seq/1kg_v37/human_g1k_v37_decoy.fasta",
+                            //            cytobandURL: "/uploadfiles/b37_cytoband.txt"
+                            //        },
+                            //        locus: "8:128,747,100-128,754,680",
+                            //        tracks: [
+                            //            {
+                            //                name: "Genes",
+                            //                type: "annotation",
+                            //                format: "bed",
+                            //                sourceType: "file",
+                            //                url: "/uploadfiles/refGene.hg19.bed.gz",//"https://s3.amazonaws.com/igv.broadinstitute.org/annotations/hg19/genes/refGene.hg19.bed.gz",
+                            //                indexURL: "/uploadfiles/refGene.hg19.bed.gz.tbi",//"https://s3.amazonaws.com/igv.broadinstitute.org/annotations/hg19/genes/refGene.hg19.bed.gz.tbi",
+                            //                order: Number.MAX_VALUE,
+                            //                visibilityWindow: 300000000,
+                            //                displayMode: "EXPANDED"
+                            //            },
+                            //  
+                            //            {
+                            //                name: "Phase 3 WGS variants",
+                            //                format: "vcf",
+                            //                url: "/uploadfiles/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5b.20130502.sites.vcf.gz",//"https://s3.amazonaws.com/1000genomes/release/20130502/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5b.20130502.sites.vcf\n\z",
+                            //                indexURL:  "/uploadfiles/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5b.20130502.sites.vcf.gz.tbi",//"https://s3.amazonaws.com/1000genomes/release/20130502/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5b.20130502.sites.vcf.gz.tbi",
+                            //                type: "variant"
+                            //            }
+                            //        ]
+                            //
+                            //    };
+                            //    
+                            //
+                            //   
+                            //    var browser1 = igv.createBrowser(div1, options1);
+
+                        </script>
+
+                        <script>
+                            function customPieExtender() {
+
+                                this.cfg.shadow = false;
+                                this.cfg.title = '';
+                                //                                                        this.cfg.seriesColors = ['#2BB673', '#F15732'];
+                                this.cfg.grid = {
+                                    background: '#ffffff',
+                                    borderColor: '#ffffff',
+                                    gridLineColor: '#edeaea',
+                                    shadow: false
+                                };
+
+                                this.cfg.highlighter = {
+                                    show: true,
+                                    tooltipLocation: 'n',
+                                    useAxesFormatters: false,
+                                    formatString: '%s = %d'
+                                };
+
+                                this.cfg.axesDefaults = {
+                                    rendererOptions: {
+                                        textColor: '#edeaea'
+                                    }
+                                };
+                            }
+                        </script>
+                        <h:outputScript name="js/extendedPieRenderer.js"/>
+                        <h:outputScript name="js/jqplot.enhancedPieLegendRenderer.js"/>
+
+                    </div>
+                </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,303 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+
+
+                <div role="main" class="main">
+
+                    <section class="page-header">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <ul class="breadcrumb">
+                                        <li><a href="#">Home</a></li>
+                                        <li class="active">Basic Search</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!--                                <div class="col">
+                                                                    <h1>Search Here</h1>
+                                                                </div>-->
+                            </div>
+                        </div>
+                    </section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="alert alert-info alert-admin">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <h4>Search Here</h4>
+                                            <p>
+                                                Compare SNPs across various samples to understand similarities and variations which can serve as an indicator of the magnitude of variation based on genetic differentiation and site frequency spectrum tests. 
+                                            </p>
+
+                                        </div>
+                                        <div class="col-lg-4 visible-md visible-lg">
+                                            <img class="appear-animation float-right" src="img/admin-banner_1.png" data-appear-animation="fadeIn"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h:form id="formbasic" prependId="false" class="form-horizontal form-bordered">  
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+
+                                    <section class="card card-admin">
+                                        <header class="card-header">
+                                            <div class="card-actions">
+                                                <a href="#" class="card-action card-action-toggle" data-card-toggle="data-card-toggle"></a>
+                                                <a href="#" class="card-action card-action-dismiss" data-card-dismiss="data-card-dismiss"></a>
+                                            </div>
+
+                                            <h3 class="card-text">Select &amp; Search</h3>
+                                        </header>
+                                        <div class="card-body">
+
+                                            <div class="form-group row">
+                                                <label class="col-md-3 control-label text-md-right pt-2"></label>
+                                                <div class="col-md-6">
+                                                    <h:messages id="msgadv" style="color: red;"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <h:outputLabel class="col-md-3 control-label text-md-right pt-2" 
+                                                               style="font-weight: bold;color:#0088cc; " 
+                                                               value="Line Set 1" />                                                    
+
+                                                <div class="col-md-6">
+                                                    <h:selectManyMenu value="#{snpHomeBean.selectedChickenLineInfoSetOne}"  
+                                                                      p:data-plugin-selectTwo="data-plugin-selectTwo" 
+                                                                      class="form-control populate" 
+                                                                      style="height: 90px;width:100%;text-align: left;
+                                                                      overflow-y: scroll"   >  
+                                                        <f:selectItems value="#{snpHomeBean.chickenLineInfo}" 
+                                                                       itemLabel="#{snpHomeBean.chickenLineInfo}" 
+                                                                       itemValue="#{snpHomeBean.chickenLineInfo}" />                                             
+                                                    </h:selectManyMenu>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <h:selectBooleanCheckbox value="#{snpHomeBean.value1}" class="checkbox-custom">
+                                                                <f:ajax render=":formbasic"/>
+                                                            </h:selectBooleanCheckbox>
+
+                                                            <h:outputLabel value="Use range with chromosome" class="control-label text-md-right pt-2" style="font-weight: bold;color:#0088cc; "/>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <h:outputLabel class="col-md-3 control-label text-md-right pt-2" id="one1" style="font-weight: bold;color:#0088cc; "
+                                                               value="Line Set 2" />        
+
+                                                <div class="col-md-6">
+                                                    <h:selectManyMenu value="#{snpHomeBean.selectedChickenLineInfoSetTwo}"   
+                                                                      p:data-plugin-selectTwo="data-plugin-selectTwo" 
+                                                                      class="form-control populate" 
+                                                                      style="height: 90px;width: 100%;text-align: left;overflow-y: scroll"   >  
+                                                        <f:selectItems value="#{snpHomeBean.chickenLineInfo}" 
+                                                                       itemLabel="#{snpHomeBean.chickenLineInfo}" 
+                                                                       itemValue="#{snpHomeBean.chickenLineInfo}" />                                             
+                                                    </h:selectManyMenu>
+
+
+                                                </div>
+                                                <div class="col-md-3"> 
+                                                    <pri:commandButton  id="saveBtn" update=":formbasic:tbl msgadv" 
+                                                                       class="btn btn-sm btn-primary"
+                                                                       action="#{snpHomeBean.submit()}" value="Search" 
+                                                                       onstart="PF('blockUIWidget').block()"  
+                                                                       oncomplete="PF('blockUIWidget').unblock()"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <h:outputLabel class="col-md-3 control-label text-md-right pt-2"  style="font-weight: bold;color:#0088cc; "
+                                                               rendered="#{snpHomeBean.value1}" value="Chromosome" />                                                    
+
+                                                <div class="col-md-6">
+                                                    <h:panelGrid id="one" rendered="#{snpHomeBean.value1}" columns="2"  width="100%">
+                                                        <h:inputText value="#{snpHomeBean.chromosome}" p:placeholder="A:00000-00000" 
+                                                                     class="form-control form-control-lg mb-3"/>
+                                                    </h:panelGrid>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <h:outputLabel class="col-md-3 control-label text-md-right pt-2" style="font-weight: bold;color:#0088cc; "
+                                                               rendered="#{!snpHomeBean.value1}" value="Chromosome" />  
+                                                <div class="col-md-6">
+                                                    <h:panelGrid  rendered="#{!snpHomeBean.value1}" width="100%">
+
+                                                        <h:selectOneMenu id="console" value="#{snpHomeBean.chromosome}" 
+                                                                         class="form-control form-control mb-3" >
+                                                            <f:selectItems value="#{snpHomeBean.chromosomeList}" 
+                                                                           itemLabel="#{snpHomeBean.chromosomeList}" 
+                                                                           itemValue="#{snpHomeBean.chromosomeList}" />                                                              
+
+                                                        </h:selectOneMenu>                                                        
+
+                                                    </h:panelGrid>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <h:outputLabel class="col-md-3 control-label text-md-right pt-2" style="font-weight: bold;color:#0088cc; "
+                                                               rendered="#{!snpHomeBean.value1}" value="Start" />  
+
+                                                <div class="col-md-6">
+                                                    <h:panelGrid  rendered="#{!snpHomeBean.value1}" width="100%">
+                                                        <h:inputText value="#{snpHomeBean.startPosition}" class="form-control form-control-lg mb-3"/>
+                                                    </h:panelGrid>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <h:outputLabel class="col-md-3 control-label text-md-right pt-2" style="font-weight: bold;color:#0088cc; "
+                                                               rendered="#{!snpHomeBean.value1}" value="End"  />  
+
+                                                <div class="col-md-6"> 
+                                                    <h:panelGrid  rendered="#{!snpHomeBean.value1}" width="100%">
+                                                        <h:inputText value="#{snpHomeBean.endPosition}" class="form-control form-control-lg mb-3"/>
+                                                    </h:panelGrid>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </section>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="col">
+                                    <section class="card card-admin">
+                                        <header class="card-header">                                            
+                                            <div class="counters">
+                                                <div class="col-sm-6 col-lg-8 mb-4 mb-lg-0">
+                                                    <div class="counter counter-primary" style="width: 100%">
+                                                        <label  style="display: inline;font-weight: bold;font-size: 25px;line-height: 25px">Total Records Found : </label>
+                                                        <strong data-to=" #{snpHomeBean.strList.size()}" data-append=""  style="font-size: 35px;display: inline"> 
+                                                            #{snpHomeBean.strList.size()}</strong>
+                                                        <label  style="display: inline;font-weight: bold;font-size: 25px;line-height: 25px">SNP</label>
+                                                    </div>
+                                                </div>                                        
+                                            </div>
+                                        </header>
+                                        <div class="card-body">
+                                            <pri:dataTable id="tbl" value = "#{snpHomeBean.strList}" var = "sequence"  
+                                                         p:data-sort-id="portfolio"  rows="10" paginator="true"
+                                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         
+                                                         class="table table-responsive-lg table-bordered table-striped table-sm mb-0">
+
+                                                <pri:column>    				
+                                                    <f:facet name = "header">Chromosome</f:facet>    				
+                                                        #{sequence.chromosome}
+                                                </pri:column>
+
+                                                <pri:column>
+                                                    <f:facet name = "header">Position</f:facet>
+                                                        #{sequence.chromosome_Position}
+                                                </pri:column>
+
+                                                <pri:column>
+                                                    <f:facet name = "header">Ref</f:facet>
+                                                        #{sequence.ref}
+                                                </pri:column>
+
+                                                <pri:column>
+                                                    <f:facet name = "header">SetOne</f:facet>
+                                                        #{sequence.setOne}
+                                                </pri:column>
+                                                <pri:column>
+                                                    <f:facet name = "header">SetTwo</f:facet>
+                                                        #{sequence.setTwo}
+                                                </pri:column>
+
+                                            </pri:dataTable>
+
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div id="portfolioPagination" class="float-right"></div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        
+                        
+                        
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="col">
+                                    <section class="card card-admin">
+                                        <header class="card-header">                                            
+                                           
+                                        </header>
+                                        <div class="card-body">
+                              
+                                            <pri:chart type="bar" model="#{snpHomeBean.barModel}">
+                                                <pri:ajax event="itemSelect" listener="#{snpHomeBean.itemSelect}" update="piechart"/>
+                                            </pri:chart>  
+                                            
+                                            
+                                            
+                                            
+                                            <pri:chart type="pie" model="#{snpHomeBean.pieModel1}" style="width:400px;height:300px" id="piechart">
+                                               
+                                             </pri:chart>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                                            
+                    </h:form>
+                </div>
+
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

@@ -1,0 +1,105 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pri="http://primefaces.org/ui" 
+      xmlns:pe="http://primefaces.org/ui/extensions" 
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:body>
+
+        <ui:composition template="template/commonLayout.xhtml">
+
+
+            <ui:define name="content">
+
+
+                <h:outputScript library="vendor/jquery" name="jquery.min.js"/>
+
+                <section class="page-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <ul class="breadcrumb">
+                                    <li><a href="#">Home</a></li>
+                                    <li class="active">Basic Search</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--                                <div class="col">
+                                                                <h1>Search Here</h1>
+                                                            </div>-->
+                        </div>
+                    </div>
+                </section>
+
+                <div class="container">
+                    <div class="row">
+                    <div class="col-lg-3">
+                            <aside class="sidebar" id="sidebar" data-plugin-sticky="data-plugin-sticky" data-plugin-options="{'minWidth': 991, 'containerSelector': '.container', 'padding': {'top': 110}}">
+
+                                    <h:form id="formbasic" prependId="false" class="form-horizontal form-bordered">  
+
+                                       
+                                    </h:form>
+
+                            </aside>
+                    </div>
+                    <div class="col-lg-9">
+                         <div class="row portfolio-list">
+                                    <div class="col-lg-12">
+                                        <div class="portfolio-item">
+                                            <span class="thumb-info thumb-info-centered-icons thumb-info-no-borders">
+
+                                                <pri:dataTable id="tbl" value = "#{snpHomeBean.strList}" var = "sequence"  
+                                                               p:data-sort-id="portfolio"  rows="100" paginator="true"
+                                                               paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+
+                                                               class="table table-responsive-lg table-bordered table-striped table-sm mb-0">
+
+                                                    <pri:column>    				
+                                                        <f:facet name = "header">Chromosome</f:facet>    				
+                                                            #{sequence.chromosome}
+                                                    </pri:column>
+
+                                                    <pri:column>
+                                                        <f:facet name = "header">Position</f:facet>
+                                                            #{sequence.chromosome_Position}
+                                                    </pri:column>
+
+                                                    <pri:column>
+                                                        <f:facet name = "header">Ref</f:facet>
+                                                            #{sequence.ref}
+                                                    </pri:column>
+
+                                                    <pri:column>
+                                                        <f:facet name = "header">SetOne</f:facet>
+                                                            #{sequence.setOne}
+                                                    </pri:column>
+                                                    <pri:column>
+                                                        <f:facet name = "header">SetTwo</f:facet>
+                                                            #{sequence.setTwo}
+                                                    </pri:column>
+
+                                                </pri:dataTable>
+
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                    </div>
+                    </div>
+                    
+            
+                </div>
+
+                <h:outputScript library="js/views" name="view.contact.js"/>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

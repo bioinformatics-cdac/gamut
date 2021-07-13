@@ -1,0 +1,22 @@
+version: "3.9"
+    
+services:
+  
+  mongodb:
+    image: mongo
+    restart: always
+
+  mongo_dump:
+    image: mongo
+    volumes:
+      - ./gamut-web-ui/dump:/var/dump    
+    command: mongorestore --host mongodb:27017 --db gamut /var/dump/
+    
+  gamut:
+    depends_on:
+      - mongodb
+      - mongo_dump
+    image: bigdata/gamut
+    ports:
+      - "8081:8080"
+    restart: always
