@@ -28,3 +28,7 @@ How to Use the Gamut using docker-compose
 ## Sample Input Data
 	Sample Input data is provided with gamut installer itself.  
 	1000 Genome Data used as sample
+	
+## Try With PWD
+[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/stack.yml)
+ 
