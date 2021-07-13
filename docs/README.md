@@ -1,5 +1,5 @@
 
-![logo](https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/logo-gamut.png =300x200)
+![logo](https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/logo-gamut.jpg)
 # What is Gamut
 
 **GAMUT** - Platform for addressing high throughput analysis and management of variant data produced by Next Generation Sequencing techniques.
