@@ -1,0 +1,22 @@
+version: '3.1'
+    
+services:
+  
+  mongodb:
+    image: mongo
+    restart: always
+
+  mongo_dump:
+    image: mongo
+    volumes:
+      - ./gamut-web-ui/dump:/var/dump    
+    command: mongorestore --host mongodb:27017 --db gamut /var/dump/
+    
+  gamut:
+    depends_on:
+      - mongodb
+      - mongo_dump
+    image: bioinformaticscdac/gamut
+    ports:
+      - 8080:8080
+    restart: always

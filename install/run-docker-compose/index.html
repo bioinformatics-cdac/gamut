@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-gamut" class="md-skip">
+        <a href="#how-to-use-the-gamut-from-docker-compose" class="md-skip">
           Skip to content
         </a>
       
@@ -287,8 +287,6 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           1 Docker Compose
@@ -304,8 +302,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -314,30 +310,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    Features
+  <a href="#how-to-use-the-gamut-from-docker-compose" class="md-nav__link">
+    How to Use the Gamut from docker-compose
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use the Gamut from docker-compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-make-clone-image-of-gamut" class="md-nav__link">
+    Step 1: Make clone image of gamut
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Make clone image of gamut">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-2-go-into-folder" class="md-nav__link">
+    Step 2:  Go into folder
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-use-the-gamut-using-docker-compose" class="md-nav__link">
-    How to Use the Gamut using docker-compose
+        
+          <li class="md-nav__item">
+  <a href="#step-3-make-maven-clean-install" class="md-nav__link">
+    Step 3:  Make maven clean install
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#docker-hub-url" class="md-nav__link">
-    Docker Hub URL
+        
+          <li class="md-nav__item">
+  <a href="#step-4-build-docker" class="md-nav__link">
+    Step 4:  Build docker
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#sample-input-data" class="md-nav__link">
-    Sample Input Data
+        
+          <li class="md-nav__item">
+  <a href="#step-5-run-gamut-docker-image" class="md-nav__link">
+    Step 5:  Run gamut docker image
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -389,8 +411,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -399,30 +419,56 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
-    Features
+  <a href="#how-to-use-the-gamut-from-docker-compose" class="md-nav__link">
+    How to Use the Gamut from docker-compose
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Use the Gamut from docker-compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-make-clone-image-of-gamut" class="md-nav__link">
+    Step 1: Make clone image of gamut
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Make clone image of gamut">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-2-go-into-folder" class="md-nav__link">
+    Step 2:  Go into folder
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-use-the-gamut-using-docker-compose" class="md-nav__link">
-    How to Use the Gamut using docker-compose
+        
+          <li class="md-nav__item">
+  <a href="#step-3-make-maven-clean-install" class="md-nav__link">
+    Step 3:  Make maven clean install
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#docker-hub-url" class="md-nav__link">
-    Docker Hub URL
+        
+          <li class="md-nav__item">
+  <a href="#step-4-build-docker" class="md-nav__link">
+    Step 4:  Build docker
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#sample-input-data" class="md-nav__link">
-    Sample Input Data
+        
+          <li class="md-nav__item">
+  <a href="#step-5-run-gamut-docker-image" class="md-nav__link">
+    Step 5:  Run gamut docker image
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -443,32 +489,29 @@
                   </a>
                 
                 
-                <p><img alt="logo" src="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/logo-gamut.jpg" /></p>
-<h1 id="what-is-gamut">What is Gamut<a class="headerlink" href="#what-is-gamut" title="Permanent link">&para;</a></h1>
-<p><strong>GAMUT</strong> - Platform for addressing high throughput analysis and management of variant data produced by Next Generation Sequencing techniques.</p>
-<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Accelerated Search</strong> : Speed and Optimization is a key attributes for any search, Gamut enabled with this feature for large genomic database.</li>
-<li><strong>Graphical Result</strong> : Graphical result displays the results in different graphical formats. Graphical results are displayed in the form of bar and pie diagrams.</li>
-<li><strong>Big data Solution</strong> : MongoDB is used at backend for support as a big data database solution for life sciences data. MongoDB supports GAMUT at backend.</li>
-<li><strong>Variant Comparison</strong> : SNP associations may help to predict an individual’s response to certain drugs, susceptibility to environmental factors such as toxins, risk of developing particular diseases and used to track the inheritance of disease genes within families.</li>
-<li><strong>1000 Genome data</strong> : The International Genome Sample Resource (IGSR) was established to ensure the ongoing usability of data generated by the 1000 Genomes Project and to extend the data set. IGSR provides open data to support the community’s research efforts.</li>
-<li><strong>Graphical Result</strong> : Graphical result displays the results in different graphical formats. Graphical results are displayed in the form of bar and pie diagrams.</li>
-<li><strong>Visualization</strong> : The Integrative Genomics Viewer (IGV) is a high- performance visualization tool for interactive exploration of large, integrated genomic.</li>
-</ul>
-<h2 id="how-to-use-the-gamut-using-docker-compose">How to Use the Gamut using docker-compose<a class="headerlink" href="#how-to-use-the-gamut-using-docker-compose" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Downloading a Gamut  Docker Image
-    &gt;  https://hub.docker.com/r/bioinformaticscdac/gamut</li>
-<li>Run via docker-compose
-    &gt; docker-compose up -d</li>
-</ul>
-<h2 id="docker-hub-url">Docker Hub URL<a class="headerlink" href="#docker-hub-url" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/bioinformatics-cdac/gamut">https://github.com/bioinformatics-cdac/gamut</a></p>
-<h2 id="sample-input-data">Sample Input Data<a class="headerlink" href="#sample-input-data" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>Sample Input data is provided with gamut installer itself.  
-1000 Genome Data used as sample
-</code></pre></div>
+                  <h1>1 Docker Compose</h1>
+                
+                <h2 id="how-to-use-the-gamut-from-docker-compose">How to Use the Gamut from docker-compose<a class="headerlink" href="#how-to-use-the-gamut-from-docker-compose" title="Permanent link">&para;</a></h2>
+<h4 id="step-1-make-clone-image-of-gamut">Step 1: Make clone image of gamut<a class="headerlink" href="#step-1-make-clone-image-of-gamut" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p><code>git clone https://github.com/bioinformatics-cdac/gamut</code></p>
+</blockquote>
+<h5 id="step-2-go-into-folder">Step 2:  Go into folder<a class="headerlink" href="#step-2-go-into-folder" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><code>cd gamut</code></p>
+</blockquote>
+<h5 id="step-3-make-maven-clean-install">Step 3:  Make maven clean install<a class="headerlink" href="#step-3-make-maven-clean-install" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><code>mvn clean install</code></p>
+</blockquote>
+<h5 id="step-4-build-docker">Step 4:  Build docker<a class="headerlink" href="#step-4-build-docker" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><code>docker build -t bioinfocdac/gamut</code></p>
+</blockquote>
+<h5 id="step-5-run-gamut-docker-image">Step 5:  Run gamut docker image<a class="headerlink" href="#step-5-run-gamut-docker-image" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><code>docker-compose up -d</code> </p>
+</blockquote>
                 
               
               
