@@ -11,19 +11,21 @@
         <meta name="author" content="Bigdata Team">
       
       
-      <link rel="icon" href="/gamut/img/favicon.ico">
+        <link rel="canonical" href="https://bioinformatics-cdac.github.io/gamut/install/run-docker-compose/">
+      
+      <link rel="icon" href="../../img/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
     
     
       
-        <title>Gamut Documentation</title>
+        <title>1 Docker Compose - Gamut Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/gamut/assets/stylesheets/main.bde7dde4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bde7dde4.min.css">
       
         
-        <link rel="stylesheet" href="/gamut/assets/stylesheets/palette.ef6f36e2.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
         
       
     
@@ -55,7 +57,7 @@
     <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="blue">
   
     
-    <script>function __prefix(e){return new URL("/gamut/",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
       <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
@@ -64,6 +66,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#what-is-gamut" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -71,9 +78,9 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/gamut/." title="Gamut Documentation" class="md-header__button md-logo" aria-label="Gamut Documentation" data-md-component="logo">
+    <a href="../.." title="Gamut Documentation" class="md-header__button md-logo" aria-label="Gamut Documentation" data-md-component="logo">
       
-  <img src="/gamut/img/logo-gamut.png" alt="logo">
+  <img src="../../img/logo-gamut.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -89,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              1 Docker Compose
             
           </span>
         </div>
@@ -185,9 +192,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/gamut/." title="Gamut Documentation" class="md-nav__button md-logo" aria-label="Gamut Documentation" data-md-component="logo">
+    <a href="../.." title="Gamut Documentation" class="md-nav__button md-logo" aria-label="Gamut Documentation" data-md-component="logo">
       
-  <img src="/gamut/img/logo-gamut.png" alt="logo">
+  <img src="../../img/logo-gamut.png" alt="logo">
 
     </a>
     Gamut Documentation
@@ -214,12 +221,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" data-md-state="indeterminate" type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
       
       <label class="md-nav__link" for="__nav_1">
         Welcome
@@ -237,7 +246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/gamut/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Overview
       </a>
     </li>
@@ -247,12 +256,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" data-md-state="indeterminate" type="checkbox" id="__nav_1_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" checked>
       
       <label class="md-nav__link" for="__nav_1_2">
         Installation
@@ -268,11 +279,72 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/gamut/install/run-docker-compose/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1 Docker Compose
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         1 Docker Compose
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-the-gamut-using-docker-compose" class="md-nav__link">
+    How to Use the Gamut using docker-compose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-hub-url" class="md-nav__link">
+    Docker Hub URL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-input-data" class="md-nav__link">
+    Sample Input Data
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -282,7 +354,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/gamut/install/run-from-source/" class="md-nav__link">
+      <a href="../run-from-source/" class="md-nav__link">
         2 Build from source
       </a>
     </li>
@@ -308,11 +380,100 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    Features
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-use-the-gamut-using-docker-compose" class="md-nav__link">
+    How to Use the Gamut using docker-compose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-hub-url" class="md-nav__link">
+    Docker Hub URL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sample-input-data" class="md-nav__link">
+    Sample Input Data
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
+                
+                  <a href="https://github.com/bioinformatics-cdac/gamut/edit/master/docs/install/run-docker-compose.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <p><img alt="logo" src="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/logo-gamut.jpg" /></p>
+<h1 id="what-is-gamut">What is Gamut<a class="headerlink" href="#what-is-gamut" title="Permanent link">&para;</a></h1>
+<p><strong>GAMUT</strong> - Platform for addressing high throughput analysis and management of variant data produced by Next Generation Sequencing techniques.</p>
+<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Accelerated Search</strong> : Speed and Optimization is a key attributes for any search, Gamut enabled with this feature for large genomic database.</li>
+<li><strong>Graphical Result</strong> : Graphical result displays the results in different graphical formats. Graphical results are displayed in the form of bar and pie diagrams.</li>
+<li><strong>Big data Solution</strong> : MongoDB is used at backend for support as a big data database solution for life sciences data. MongoDB supports GAMUT at backend.</li>
+<li><strong>Variant Comparison</strong> : SNP associations may help to predict an individual’s response to certain drugs, susceptibility to environmental factors such as toxins, risk of developing particular diseases and used to track the inheritance of disease genes within families.</li>
+<li><strong>1000 Genome data</strong> : The International Genome Sample Resource (IGSR) was established to ensure the ongoing usability of data generated by the 1000 Genomes Project and to extend the data set. IGSR provides open data to support the community’s research efforts.</li>
+<li><strong>Graphical Result</strong> : Graphical result displays the results in different graphical formats. Graphical results are displayed in the form of bar and pie diagrams.</li>
+<li><strong>Visualization</strong> : The Integrative Genomics Viewer (IGV) is a high- performance visualization tool for interactive exploration of large, integrated genomic.</li>
+</ul>
+<h2 id="how-to-use-the-gamut-using-docker-compose">How to Use the Gamut using docker-compose<a class="headerlink" href="#how-to-use-the-gamut-using-docker-compose" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Downloading a Gamut  Docker Image
+    &gt;  https://hub.docker.com/r/bioinformaticscdac/gamut</li>
+<li>Run via docker-compose
+    &gt; docker-compose up -d</li>
+</ul>
+<h2 id="docker-hub-url">Docker Hub URL<a class="headerlink" href="#docker-hub-url" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/bioinformatics-cdac/gamut">https://github.com/bioinformatics-cdac/gamut</a></p>
+<h2 id="sample-input-data">Sample Input Data<a class="headerlink" href="#sample-input-data" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Sample Input data is provided with gamut installer itself.  
+1000 Genome Data used as sample
+</code></pre></div>
+                
+              
+              
+                
+
 
               
             </article>
@@ -327,6 +488,39 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../.." class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../run-from-source/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              2 Build from source
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -351,10 +545,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "/gamut/", "features": ["navigation.instant", "navigation.expand", "navigation.top", "search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "/gamut/assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.expand", "navigation.top", "search.suggest", "search.highlight"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
     
     
-      <script src="/gamut/assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      <script src="../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
       
     
   </body>

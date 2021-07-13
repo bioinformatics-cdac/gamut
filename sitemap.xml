@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
-     <loc>https://thomassuedbroecker.github.io/How-to-install-MkDocs-on-Mac-and-setup-integration-with-GitHub/</loc>
+     <loc>https://bioinformatics-cdac.github.io/gamut/</loc>
+     <lastmod>2021-07-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://bioinformatics-cdac.github.io/gamut/install/run-docker-compose/</loc>
+     <lastmod>2021-07-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://bioinformatics-cdac.github.io/gamut/install/run-from-source/</loc>
      <lastmod>2021-07-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
