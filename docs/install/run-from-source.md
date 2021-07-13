@@ -7,6 +7,6 @@
 ##### Step 3:  Make maven clean install
 > `mvn clean install`
 ##### Step 4:  Build docker
-> `docker build -t bioinfocdac/gamut`
+> `docker build -t bioinformaticscdac/gamut .`
 ##### Step 5:  Run gamut docker image
 > `docker-compose up -d` 

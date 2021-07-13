@@ -20,7 +20,7 @@ How to Use the Gamut using docker-compose
 - Run via docker-compose
 	> docker-compose up -d
 
-## Docker Hub URL
+## GitHub URL
 
 [https://github.com/bioinformatics-cdac/gamut](https://github.com/bioinformatics-cdac/gamut)
 

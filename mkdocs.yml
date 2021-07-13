@@ -6,7 +6,7 @@ site_author: Bigdata Team
 # Repository
 repo_name: Gamut
 repo_url: https://github.com/bioinformatics-cdac/gamut
-edit_uri: edit/master/docs
+edit_uri: edit/main/docs
 docs_dir: docs
 
 # Navigation

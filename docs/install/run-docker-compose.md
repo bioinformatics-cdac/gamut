@@ -4,9 +4,5 @@
 > `git clone https://github.com/bioinformatics-cdac/gamut `
 ##### Step 2:  Go into folder
 > `cd gamut`
-##### Step 3:  Make maven clean install
-> `mvn clean install`
-##### Step 4:  Build docker
-> `docker build -t bioinfocdac/gamut`
-##### Step 5:  Run gamut docker image
+##### Step 3:  Run gamut docker image
 > `docker-compose up -d` 
