@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MongoDBInfo {
-	@Parameter(names = { "--host", "-h" }, description = "MogoDB Server IP address")
+	@Parameter(names = { "--host", "-h"}, description = "MogoDB Server IP address")
 	private String host = "127.0.0.1";
 
 	@Parameter(names = { "--port", "-p" }, description = "MogoDB Server Port")

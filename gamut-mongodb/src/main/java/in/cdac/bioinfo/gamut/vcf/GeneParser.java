@@ -104,11 +104,12 @@ public class GeneParser implements Runnable{
 
                     geneBeans.add(geneb);
                     
-//                    if(geneBeans.size()==10000){
-//                        storeGeneBean(geneBeans, index);
-//                        geneBeans.clear();
-//                        System.out.println("List cleared after "+geneBeans.size());
-//                    }else{
+                    if(geneBeans.size()==2000){
+                        storeGeneBean(geneBeans, geneBeans.size());
+                        geneBeans.clear();
+                        System.out.println("List cleared after "+geneBeans.size());
+                    }
+                    //else{
 //                        continue;
 //                    }
 //                        
@@ -142,6 +143,7 @@ public class GeneParser implements Runnable{
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GeneParser.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         } 
     }
 

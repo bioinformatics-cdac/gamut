@@ -36,15 +36,15 @@ public class MongoDbClient {
 		return collection;
 
 	}
-	
-	
-	 public static void createIndices() {
-    	 collection.createIndex(Indexes.ascending("Chromosome", "Position"));
-    	 collection.createIndex(Indexes.ascending("Position"));
-    	 
-     }
 
-	public static void insertSampleNames(List<String> listofsamples, StringBuilder builder, MongoCollection<Document> localCollection ) {
+	public static void createIndices() {
+		collection.createIndex(Indexes.ascending("Chromosome", "Position"));
+		collection.createIndex(Indexes.ascending("Position"));
+
+	}
+
+	public static void insertSampleNames(List<String> listofsamples, List<String> vcfHeaders,
+			MongoCollection<Document> localCollection) {
 		Vcf bean = new Vcf();
 		bean.setId("0.0");
 		bean.setChromosome("0.0");
@@ -52,27 +52,21 @@ public class MongoDbClient {
 
 		bean.setLineToProcess(listofsamples.toString());
 
-		String listString = String.join(",", listofsamples);
-		DistinctIterable<String> distinctChr = collection.distinct("Chromosome", String.class);
+		DistinctIterable<String> distinctChromosomes = collection.distinct("Chromosome", String.class);
 
 		List<String> chromosomeList = new ArrayList<String>();
 
-		for (String chr : distinctChr) {
+		for (String chr : distinctChromosomes) {
 			chromosomeList.add(chr);
 		}
 		chromosomeList.add("ALL");
-		System.out.println("in insert" + String.join(",", chromosomeList));
+
 		Document document = new Document("_id", new BsonString(bean.getChromosome() + ":" + bean.getPosition()))
-				.append("Chromosome", String.join(",", chromosomeList)).append("Position", null)
-				.append("ID", bean.getId()).append("REF", bean.getRef()).append("Line", listString)
-				.append("Header", builder.toString());
-
-		// document.append("Line", Arrays.asList(listofsamples));
-
+				.append("Chromosome", chromosomeList).append("Samples", listofsamples).append("Headers", vcfHeaders);
 		localCollection.insertOne(document);
 		System.out.println("inserted");
 	}
-	
+
 	public static void insert(Vcf vcfb, MongoCollection<Document> localCollection) {
 
 		Document document = new Document("_id", new BsonString(vcfb.getChromosome() + ":" + vcfb.getPosition()))

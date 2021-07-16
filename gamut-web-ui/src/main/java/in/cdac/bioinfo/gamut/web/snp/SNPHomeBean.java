@@ -6,7 +6,6 @@
 package in.cdac.bioinfo.gamut.web.snp;
 
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,8 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -90,6 +87,10 @@ public class SNPHomeBean implements Serializable {
 		createBarModel(SnpQuery.getMaxcounter());
 
 		createPieModel1(0);
+
+	}
+
+	public void saveTxt() {
 
 	}
 
@@ -253,53 +254,48 @@ public class SNPHomeBean implements Serializable {
 	public String adv_next() {
 
 //		System.out.println("vcfcollectionaName : "+vcfcollectionaName+" genecollectionaName: "+configurationBean.getGanecollectionname());
-		
-		
+
 		mongoDBLoader.init(configurationBean.getHost(), Integer.parseInt(configurationBean.getMongoPort()),
-				configurationBean.getDatabase(), configurationBean.getVcfcollectioname(),configurationBean.getGanecollectionname(), null);
+				configurationBean.getDatabase(), configurationBean.getVcfcollectioname(),
+				configurationBean.getGanecollectionname(), null);
 		List<SelectItem> items = new ArrayList<SelectItem>();
 
 		SnpQuery main = new SnpQuery(mongoDBLoader);
 
-		Document doc = main.retriveListRecords("0.0:0");
+		Document doc = main.getSampleDocument();
+		System.out.println(doc);
 
-		//String header = main.retriveHeader("0.0:0");
+		if (doc != null) {
 
-		if(doc !=null) {
-			StringTokenizer st = new StringTokenizer(doc.getString("Line").trim(), ",");
+			List<String> listofsamples = doc.getList("Samples", String.class);
 
-			while (st.hasMoreTokens()) {
-				String str = st.nextToken();
-				items.add(new SelectItem(str.trim()));
-//				System.out.println("str:" + str);
+			for (String sample : listofsamples) {
+				items.add(new SelectItem(sample.trim()));
 			}
 
 			setChickenLineInfo(items);
 			setChickenLineInfoSecond(items);
-			
+
 			chromosomeList.clear();
 
-			String chrls = doc.getString("Chromosome");// main.retriveChrList("0.0:0");
-			StringTokenizer st1 = new StringTokenizer(chrls, ",");
+			List<String> chromosomeListDB = doc.getList("Chromosome", String.class);
 
-			while (st1.hasMoreTokens()) {
-				String str = st1.nextToken();
-				chromosomeList.add(new SelectItem(str.trim(), str.trim()));
-//				System.out.println("str:" + str);
+			for (String chromosomeItem : chromosomeListDB) {
+				chromosomeList.add(new SelectItem(chromosomeItem.trim(), chromosomeItem.trim()));
 			}
-			
-			if(checkAdvflag) {
+
+			if (checkAdvflag) {
 				return "advanceSearch";
-			}else {
+			} else {
 //				System.out.println("forward to search");
-				return "search";	
+				return "search";
 			}
-			
-		}else {
+
+		} else {
 //			System.out.println("forward to recordnotfound");
 			return "recordnotfound";
 		}
-		
+
 	}
 
 	public String getForward() {
@@ -307,10 +303,10 @@ public class SNPHomeBean implements Serializable {
 //		System.out.println(vcfcollectionaName);
 		configurationBean.setVcfcollectioname(vcfcollectionaName);
 		configurationBean.setGanecollectionname(vcfcollectionaName.concat("gtf"));
-		
+
 		String ret = adv_next();
 		return ret;
-		
+
 	}
 
 	boolean checkAdvflag = false;
@@ -321,11 +317,10 @@ public class SNPHomeBean implements Serializable {
 //		System.out.println("in AdvForward : "+vcfcollectionaName);
 		configurationBean.setVcfcollectioname(vcfcollectionaName);
 		configurationBean.setGanecollectionname(vcfcollectionaName.concat("gtf"));
-		
+
 		String ret = adv_next();
 		return ret;
-		
-		
+
 	}
 
 	public boolean isCheckAdvflag() {
@@ -536,7 +531,6 @@ public class SNPHomeBean implements Serializable {
 
 	public String submit() {
 
-
 		if (getSelectedChickenLineInfoSetOne().size() > 0 && getSelectedChickenLineInfoSetTwo().size() > 0) {
 
 			if (!getChromosome().equals("ALL")) {
@@ -599,7 +593,7 @@ public class SNPHomeBean implements Serializable {
 	}
 
 	public String searchByAdv() {
-		
+
 		// simulate a heavy operation
 		if (getSelectedChickenLineInfoSetOne().size() > 0 && getSelectedChickenLineInfoSetTwo().size() > 0) {
 			String setone = makeCommaSeperatedString(getSelectedChickenLineInfoSetOne());
@@ -659,7 +653,6 @@ public class SNPHomeBean implements Serializable {
 
 	private BarChartModel barModel;
 	private PieChartModel pieModel1;
-
 
 	public BarChartModel getBarModel() {
 		return barModel;
@@ -749,7 +742,7 @@ public class SNPHomeBean implements Serializable {
 
 		createPieModel1(0);
 //		System.out.println(retriveVCFRecords.size());
-		
+
 		return retriveVCFRecords;
 
 	}
@@ -803,13 +796,13 @@ public class SNPHomeBean implements Serializable {
 		long endTime = System.currentTimeMillis();
 
 		System.out.println("Time taken : " + (endTime - startTime) + " ms");
-		
+
 		createBarModel(SnpQuery.getMaxcounter());
 
 		createPieModel1(0);
 
 		System.out.println("callNOSQLMongoDB - retriveVCFRecords.size() -" + retriveVCFRecords.size());
-		
+
 		return retriveVCFRecords;
 	}
 
@@ -944,12 +937,10 @@ public class SNPHomeBean implements Serializable {
 
 		StringTokenizer st = new StringTokenizer(settwo, "|");
 		while (st.hasMoreTokens()) {
-			String token = st.nextToken();			
+			String token = st.nextToken();
 
 		}
 	}
-
-	
 
 	private String makeCommaSeperatedString(List<String> list) {
 		String separator = ",";
@@ -973,5 +964,3 @@ public class SNPHomeBean implements Serializable {
 	StringBuilder sbtwo = new StringBuilder("#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t");
 
 }
-
-

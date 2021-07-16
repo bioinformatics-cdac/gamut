@@ -42,6 +42,12 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- <dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency> -->
+
 
 	</dependencies>
 	<build>
@@ -57,7 +63,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>com.cdac.mongodb.MongodbCommandParser</mainClass>
+							<mainClass>in.cdac.bioinfo.gamut.mongodb.MongodbCommandParser</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

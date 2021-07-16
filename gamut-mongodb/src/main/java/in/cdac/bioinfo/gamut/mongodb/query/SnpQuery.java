@@ -88,18 +88,18 @@ public class SnpQuery {
 
 	}
 
-	public String retriveHeader(String id) {
+	public List<String> getHeaders() {
 		Bson filter = Filters.eq("_id", "0.0:0");
 
 		FindIterable<Document> result = this.collection.find(filter);
 
 		Document doc = result.first();
 
-		String format = doc.getString("Header");
+		List<String> format = doc.getList("Headers", String.class);
 		return format;
 	}
 
-	public Document retriveListRecords(String id) {
+	public Document getSampleDocument() {
 		Bson filter = Filters.eq("_id", "0.0:0");
 
 		FindIterable<Document> result = this.collection.find(filter);
@@ -110,14 +110,14 @@ public class SnpQuery {
 		return doc;
 	}
 
-	public String retriveChrList(String id) {
+	public List<String> getSampleList() {
 		Bson filter = Filters.eq("_id", "0.0:0");
 
 		FindIterable<Document> result = this.collection.find(filter);
 
 		Document doc = result.first();
 
-		String list = doc.getString("Line");
+		List<String> list = doc.getList("Samples", String.class);
 
 		return list;
 	}

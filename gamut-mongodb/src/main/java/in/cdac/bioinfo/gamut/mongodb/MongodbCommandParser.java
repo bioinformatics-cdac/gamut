@@ -20,67 +20,60 @@ import in.cdac.bioinfo.gamut.vcf.StoreVcfToMongoDb;
  *
  * @author ramki
  */
+//@Slf4j
 public class MongodbCommandParser {
 
 	public static void main(String[] args) throws InterruptedException {
-       
-      
 
-        MongodbDumpCommand store = new MongodbDumpCommand();
-        MongodbQueryCommand query = new MongodbQueryCommand();
-        
-        JCommander jc = JCommander.newBuilder()
-        		.addCommand(MongodbCommand.STORE_COMMAND, store)
-        		.addCommand(MongodbCommand.QUERY_COMMAND, query).build();
+		MongodbDumpCommand store = new MongodbDumpCommand();
+		MongodbQueryCommand query = new MongodbQueryCommand();
 
-        try {
+		JCommander jc = new JCommander();
 
-            jc.parse(args);
+		jc.addCommand(MongodbCommand.STORE_COMMAND, store);
+		jc.addCommand(MongodbCommand.QUERY_COMMAND, query);
+
+		try {
+
+			jc.parse(args);
 
 
-//            jc.parse(args);
-//              jc.parse("store", "-i", "/home/", "-e");
 //              
-              jc.parse("query","-h","ramki","-d","gamut","--collection","v_1GB","-ch","chr1","-s","450703","-e","451697","-left","HG03072","-right","NA19755");
-              
-              
-              System.out.println("Chromw : "+query.getChromosome());
-              //System.out.println("Chromw : "+query.());
-              
+//			jc.parse("query", "--host","ramki", "-d", "gamut", "--collection", "v_1GB", "-ch", "chr1", "-s", "450703",
+//				"-e", "451697", "-left", "HG03072", "-right", "NA19755");
 
-            if (MongodbCommand.STORE_COMMAND.equals(jc.getParsedCommand())) {
-                MongoDBLoader mongoDBLoader = getMongoDBLoader(store.getMongoDBInfo());
+		
 
-                StoreVcfToMongoDb parserMain = new StoreVcfToMongoDb();
-                parserMain.submit(store, mongoDBLoader);
+			if (MongodbCommand.STORE_COMMAND.equals(jc.getParsedCommand())) {
+				MongoDBLoader mongoDBLoader = getMongoDBLoader(store.getMongoDBInfo());
 
-            } else if (MongodbCommand.QUERY_COMMAND.equals(jc.getParsedCommand())) {
-                MongoDBLoader mongoDBLoader = getMongoDBLoader(store.getMongoDBInfo());
-                SnpQuery chickenQuery = new SnpQuery(mongoDBLoader);
+				StoreVcfToMongoDb parserMain = new StoreVcfToMongoDb();
+				parserMain.submit(store, mongoDBLoader);
 
-                List<String> leftList = query.getLeft();
-                List<String> rightList = query.getRight();
+			} else if (MongodbCommand.QUERY_COMMAND.equals(jc.getParsedCommand())) {
+				MongoDBLoader mongoDBLoader = getMongoDBLoader(query.getMongoDBInfo());
+				SnpQuery snpQuery = new SnpQuery(mongoDBLoader);
 
-   
-                long startTime = System.currentTimeMillis();
-                List<OutputSnpBean> retriveVCFRecords = chickenQuery.retriveVCFRecords(query.getChromosome(), query.getStart(), query.getEnd(), leftList, rightList);
-                for (OutputSnpBean retriveVCFRecord : retriveVCFRecords) {
-//                    System.out.println(retriveVCFRecord);
-                }
-//                System.out.println(retriveVCFRecords.size());
-                long endTime = System.currentTimeMillis();
+				List<String> leftList = query.getLeft();
+				List<String> rightList = query.getRight();
 
-                System.out.println("Time taken : " + (endTime - startTime) + " ms");
+				long startTime = System.currentTimeMillis();
+				List<OutputSnpBean> retriveVCFRecords = snpQuery.retriveVCFRecords(query.getChromosome(),
+						query.getStart(), query.getEnd(), leftList, rightList);
+				System.out.println("Retrieved Records Count : "+ retriveVCFRecords.size());
+				long endTime = System.currentTimeMillis();
 
-            }
-        } catch (Exception e) {
-          System.err.println(e.getMessage());
+				System.out.println("Time taken : " + (endTime - startTime) + " ms");
 
-            jc.usage();
-        }
+			}
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
 
-    }
+			jc.usage();
+		}
 
+	}
 
 	private static MongoDBLoader getMongoDBLoader(MongoDBInfo mongoDBInfo) {
 		System.out.println("MongoDB Database Host   : " + mongoDBInfo.getHost());

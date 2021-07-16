@@ -11,13 +11,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.mongodb.client.model.Indexes;
 
 import in.cdac.bioinfo.gamut.mongodb.MongoDBLoader;
 import in.cdac.bioinfo.gamut.vcf.bean.Vcf;
@@ -31,7 +28,7 @@ public class VcfParser implements Runnable {
 	public static List<String> listOfSampleNames = new ArrayList<>();
 
 	private static String HEADER_MARKER = "#";
-	private static int RECORD_COUNT = 5000;
+	private static int BATCH_RECORD_COUNT = 1000;
 	private MongoDBLoader mongoDBLoader;
 	private File vcfFile;
 	private MongoDbDAO mongoDbDAO;
@@ -39,7 +36,13 @@ public class VcfParser implements Runnable {
 	public VcfParser(File vcfFile, MongoDBLoader mongoDBLoader) {
 		this.vcfFile = vcfFile;
 		this.mongoDBLoader = mongoDBLoader;
-		mongoDbDAO = new MongoDbDAO(mongoDBLoader);
+		mongoDbDAO = new MongoDbDAO(mongoDBLoader, BATCH_RECORD_COUNT);
+	}
+
+	public VcfParser(File vcfFile, MongoDBLoader mongoDBLoader, int batchRecordCount) {
+		this.vcfFile = vcfFile;
+		this.mongoDBLoader = mongoDBLoader;
+		mongoDbDAO = new MongoDbDAO(mongoDBLoader, batchRecordCount);
 	}
 
 	@Override
@@ -53,10 +56,12 @@ public class VcfParser implements Runnable {
 		}
 	}
 
-	
-	private Vcf processVCFLine(String line) {
-		// System.out.println(line);
+	private void processVCFLine(String line) {
 		Vcf vcfb = new Vcf();
+		this.processVCFLine(line, vcfb);
+	}
+
+	private void processVCFLine(String line, Vcf vcfb) {
 
 		try {
 
@@ -72,7 +77,7 @@ public class VcfParser implements Runnable {
 
 			String alts = scanner.next();
 			String[] altSplit = alts.split(",");
-			// System.out.println(vcfb);
+
 			scanner.next(); // QUAL
 			scanner.next(); // FILTER
 			scanner.next(); // INFO
@@ -198,36 +203,43 @@ public class VcfParser implements Runnable {
 			System.out.println("" + line);
 		}
 
-		return vcfb;
 	}
 
 	private void processVCFFile(File vcfFile) throws FileNotFoundException, IOException {
 
 		FileReader fileReader = new FileReader(vcfFile);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
-		StringBuilder sb = new StringBuilder();
 
-		int totalLineprocessed = 0;
-		int totalDocsAdded = 0;
+		List<String> vcfHeaders = new ArrayList<String>();
 
 		String line = null;
-		int count = 0;
+
 		long start, end;
 		start = System.currentTimeMillis();
-		int linesDuplicate = 0;
+
 		boolean flag = true;
 
-		List<Vcf> listOfVcfBeans = new ArrayList<>();
+		List<Vcf> vcfBeans = new ArrayList<>(BATCH_RECORD_COUNT);
+
+		for (int i = 0; i < BATCH_RECORD_COUNT; i++) {
+			Vcf vcfb = new Vcf();
+			vcfBeans.add(vcfb);
+		}
+		int index = 0;
+		long recordsInserted = 0;
+		start = System.currentTimeMillis();
+		long processTime = 0;
+		long totalTimeForInsertion = 0;
 		while ((line = bufferedReader.readLine()) != null) {
 			try {
-				totalLineprocessed++;
+
 				if (line.startsWith("#CHROM")) {
 					flag = false;
 					processHeader(line);
 					continue;
 				} else {
 					if (flag) {
-						sb.append(line + "\n");
+						vcfHeaders.add(line);
 					}
 
 					if (line.length() > 0 && line.startsWith("#")) {
@@ -235,63 +247,60 @@ public class VcfParser implements Runnable {
 					}
 				}
 				if (!line.contains("*")) {
-					Vcf vcfb = processVCFLine(line);
+					Vcf vcfb = vcfBeans.get(index);
+					vcfb.clear();
 
-//                SNPChickenQuery snpcq = new SNPChickenQuery(mongoDBLoader);
-//                List ls=snpcq.retriveGeneRecords(vcfb.getChromosome(),vcfb.getPosition());
-					// System.out.println("Gene Size : "+ls.size());
-//                vcfb.setGeneName(ls);
-					if (vcfb.getMapAltLines().size() > 0) {
-						// System.out.println(vcfb);
-						// System.out.println(vcfb.getLineToProcess());
-//                    listOfVcfBeans.add(vcfb);
-//
-//                    // mongoDbDAO.insert(listOfVcfBeans);
-//                    totalDocsAdded++;
-//                    if (totalDocsAdded % 1000 == 0) {
-//                        //   try {
-//                        //      mongoDbDAO.insert(listOfVcfBeans);
-//                        // } catch (Throwable throwable) {
-//                        //   System.out.println("ERROR : " + totalLineprocessed + " \t " + throwable.getMessage());
-//                        for (VCFBean vCFBean : listOfVcfBeans) {
-						try {
-							// System.out.println("in INSERT");
-							mongoDbDAO.insert(vcfb);
-						} catch (Throwable throwable1) {
-							linesDuplicate++;
-//                        System.out.println("ERROR : " + totalLineprocessed + " \t " + throwable1.getMessage() + "\t " + vCFBean.toString());
-							System.out.println("LINE_DUPLICATE=>" + vcfb.getLineToProcess());
-						}
+					processVCFLine(line, vcfb);
+					if (vcfb.getMapAltLines().size() == 0)
+						continue;
+					
+					index++;
 
-						count++;
-						if (count % 100000 == 0) {
+				}
+				if ((index) % BATCH_RECORD_COUNT == 0) {
 
-							end = System.currentTimeMillis();
-							System.out.println();
-							System.out.println(new Date() + " :\t" + totalDocsAdded + "\t"
-									+ count / ((end - start) / 1000) + " Docs/Sec");
-							count = 0;
-							start = System.currentTimeMillis();
-						}
-					}
-				} else {
-					// System.out.println("" + line);
-					continue;
+					mongoDbDAO.insertOptimized(vcfBeans, index);
+					end = System.currentTimeMillis();
+					processTime = end - start;
+					totalTimeForInsertion = totalTimeForInsertion + processTime;
+					recordsInserted = recordsInserted + index;
+					System.out.println("Time for inserting " + index + " records is = " + processTime + " ms "
+							+ "\n Total Records Inserted Till Now : " + recordsInserted);
+
+					start = System.currentTimeMillis();
+					index = 0;
+
 				}
 
 			} catch (Throwable throwable) {
-				System.out.println(
-						"Exception Down : " + throwable.getMessage() + " " + throwable.toString() + " " + line);
+//				System.out.println(
+//						"Exception Down : " + throwable.getMessage() + " " + throwable.toString() + " " + line);
 				throwable.printStackTrace();
+				throw throwable;
 			}
 		}
 
-		System.out.println("0.0:0sample add---");
-		mongoDbDAO.insertSampleNames(listOfSampleNames, sb);
+		if (index > 0) {
+			mongoDbDAO.insertOptimized(vcfBeans, index);
+			end = System.currentTimeMillis();
+			processTime = end - start;
+			totalTimeForInsertion = totalTimeForInsertion + processTime;
+			recordsInserted = recordsInserted + index;
+			System.out.println("Time for inserting  " + index + "records  is = " + processTime + " ms "
+					+ "\n Total Records Inserted Till Now : " + recordsInserted);
+
+		}
+		System.out.println("Inserting records is completed, total records inserted = " + recordsInserted);
+		System.out.println("Total Time for Inserting = " + totalTimeForInsertion);
+
+		mongoDbDAO.insertSampleNames(listOfSampleNames, vcfHeaders);
+		System.out.println("Creating index started ...");
+		start = System.currentTimeMillis();
 		mongoDbDAO.createIndices();
-		System.out.println("totalDocsAdded : " + totalDocsAdded);
-		System.out.println("totalLineprocessed : " + totalLineprocessed);
-		System.out.println("totalDuplicate : " + linesDuplicate);
+		end = System.currentTimeMillis();
+		processTime = end - start;
+		System.out.println("Time for creating index is =  " + processTime);
+		System.out.println("Creating index completed successfully ...");
 
 		bufferedReader.close();
 

@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-//@Parameters(separators = "=", commandDescription = "Record fetched/retrieved from the repository")
+@Parameters(separators = "=", commandDescription = "Record fetched/retrieved from the repository")
 
 public class MongodbQueryCommand {
 
@@ -37,7 +37,7 @@ public class MongodbQueryCommand {
 	@Parameter(names = { "--end", "-e" }, required = true, description = "End Position (inclusive")
 	private long end = 1;
 
-	@Parameter(names = { "--output", "-o" }, description = "OutPut File Name")
+	@Parameter(names = { "--output", "-o" }, description = "Output File Name")
 	private String output;
 
 	@Parameter(names = "-left", required = true, description = "Left ")

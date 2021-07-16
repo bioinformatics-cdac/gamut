@@ -37,4 +37,25 @@ public class StoreVcfToMongoDb {
 
         // mongoDBLoader.close();
     }
+    
+    
+    public void submit(MongodbDumpCommand command, MongoDBLoader mongoDBLoader, int batchRecordCount) {
+        ExecutorService executorService = Executors.newFixedThreadPool(command.getProcessors());
+
+        File basePathFile = new File(command.getPath());
+
+        if (basePathFile.isDirectory()) {
+            for (File vcfFile : basePathFile.listFiles()) {
+                VcfParser parser = new VcfParser(vcfFile, mongoDBLoader,batchRecordCount);
+                executorService.execute(parser);
+            }
+        } else {
+            VcfParser parser = new VcfParser(basePathFile, mongoDBLoader,batchRecordCount);
+            executorService.execute(parser);
+        }
+
+        executorService.shutdown();
+
+        // mongoDBLoader.close();
+    }
 }

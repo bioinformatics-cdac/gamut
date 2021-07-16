@@ -16,119 +16,121 @@ import java.util.Map;
  */
 public class Vcf {
 
-    
-    private String chromosome;
-    private int position;
-    private String id;
-    private String ref;
-    private Map<String,List<String>> mapAltLines;
-    private Map<String,List<String>> mapTokenLines;
-    private String lineToProcess;
-    private List<String> geneName;
-        
-    public Vcf() {
-        mapAltLines = new HashMap<>();
-        mapTokenLines= new HashMap<>();
-        geneName=new ArrayList<String>();
-    }
-    
-    public Vcf(String chromosome, int position, String id, String ref, String lineToProcess) {
-        this.chromosome = chromosome;
-        this.position = position;
-        this.id = id;
-        this.ref = ref;
-        mapAltLines = new HashMap<>();
-         mapTokenLines= new HashMap<>();
-        this.lineToProcess = lineToProcess;
-       geneName=new ArrayList<String>();
-    }
+	private String chromosome;
+	private int position;
+	private String id;
+	private String ref;
+	private Map<String, List<String>> mapAltLines;
+	private Map<String, List<String>> mapTokenLines;
+	private String lineToProcess;
+	private List<String> geneName;
 
-    public List<String> getGeneName() {
-        return geneName;
-    }
+	public Vcf() {
+		mapAltLines = new HashMap<>();
+		mapTokenLines = new HashMap<>();
+		geneName = new ArrayList<String>();
+	}
 
-    public void setGeneName(List<String> geneName) {
-        this.geneName = geneName;
-    }
+	public Vcf(String chromosome, int position, String id, String ref, String lineToProcess) {
+		this.chromosome = chromosome;
+		this.position = position;
+		this.id = id;
+		this.ref = ref;
+		mapAltLines = new HashMap<>();
+		mapTokenLines = new HashMap<>();
+		this.lineToProcess = lineToProcess;
+		this.geneName = new ArrayList<String>();
+	}
 
+	public void clear() {
+		chromosome = "";
+		position = -1;
+		id = "";
+		ref = "";
+		mapAltLines.clear();
+		mapTokenLines.clear();
+		lineToProcess = "";
+		geneName.clear();
+	}
 
-    public String getChromosome() {
-        return chromosome;
-    }
+	public List<String> getGeneName() {
+		return geneName;
+	}
 
-    public void setChromosome(String chromosome) {
-        this.chromosome = chromosome;
-    }
+	public void setGeneName(List<String> geneName) {
+		this.geneName = geneName;
+	}
 
-    public int getPosition() {
-        return position;
-    }
+	public String getChromosome() {
+		return chromosome;
+	}
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
+	public void setChromosome(String chromosome) {
+		this.chromosome = chromosome;
+	}
 
-    public String getId() {
-        return id;
-    }
+	public int getPosition() {
+		return position;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setPosition(int position) {
+		this.position = position;
+	}
 
-    public String getRef() {
-        return ref;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setRef(String ref) {
-        this.ref = ref;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public Map<String, List<String>> getMapAltLines() {
-        return mapAltLines;
-    }
+	public String getRef() {
+		return ref;
+	}
+
+	public void setRef(String ref) {
+		this.ref = ref;
+	}
+
+	public Map<String, List<String>> getMapAltLines() {
+		return mapAltLines;
+	}
 
 //    public void setMapAltLines(Map<String, String> mapAltLines) {
 //        this.mapAltLines = mapAltLines;
 //    }
 
-    public String getLineToProcess() {
-        return lineToProcess;
-    }
+	public String getLineToProcess() {
+		return lineToProcess;
+	}
 
-    public void setLineToProcess(String lineToProcess) {
-        this.lineToProcess = lineToProcess;
-    }
+	public void setLineToProcess(String lineToProcess) {
+		this.lineToProcess = lineToProcess;
+	}
 
-    public Map<String, List<String>> getMapTokenLines() {
-        return mapTokenLines;
-    }
+	public Map<String, List<String>> getMapTokenLines() {
+		return mapTokenLines;
+	}
 
-    public void setMapTokenLines(Map<String, List<String>> mapTokenLines) {
-        this.mapTokenLines = mapTokenLines;
-    }
+	public void setMapTokenLines(Map<String, List<String>> mapTokenLines) {
+		this.mapTokenLines = mapTokenLines;
+	}
 
-    
-   
+	void reset() {
+		this.chromosome = null;
+		this.position = 0;
+		this.id = null;
+		this.ref = null;
+		this.mapAltLines = null;
+		this.lineToProcess = null;
+		this.geneName = new ArrayList<String>();
+	}
 
-    void reset() {
-        this.chromosome = null;
-        this.position = 0;
-        this.id = null;
-        this.ref = null;
-        this.mapAltLines = null;
-        this.lineToProcess = null;
-        this.geneName=new ArrayList<String>();
-    }
+	@Override
+	public String toString() {
+		return "VCFBean{" + "chromosome=" + chromosome + ", position=" + position + ", id=" + id + ", ref=" + ref
+				+ ", mapAltLines=" + mapAltLines + '}';
+	}
 
-    @Override
-    public String toString() {
-        return "VCFBean{" + "chromosome=" + chromosome + ", position=" + position + ", id=" + id + ", ref=" + ref + ", mapAltLines=" + mapAltLines + '}';
-    }
-
-    
-    
-    
-    
 }
-   

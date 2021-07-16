@@ -94,7 +94,7 @@ public class Main {
 
 		System.out.println(count);
 		MongoCollection<Document> collection = MongoDbClient.getCollection(store.getMongoDBInfo());
-		MongoDbClient.insertSampleNames(headers, sb, collection);
+		MongoDbClient.insertSampleNames(headers, null, collection);
 
 		long endTime = System.currentTimeMillis();
 
