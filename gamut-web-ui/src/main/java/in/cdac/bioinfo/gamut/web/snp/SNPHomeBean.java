@@ -772,15 +772,15 @@ public class SNPHomeBean implements Serializable {
 
 		}
 
-		SnpQuery main = new SnpQuery(mongoDBLoader);
+		SnpQuery snpQuery = new SnpQuery(mongoDBLoader);
 
 		List<OutputSnpBean> retriveVCFRecords = new ArrayList<>();
 
 		long startTime = System.currentTimeMillis();
 
-		retriveVCFRecords = main.retriveVCFRecords(chromosome, pos1, pos2, leftList, rightList);
+		retriveVCFRecords = snpQuery.retriveVCFRecords(chromosome, pos1, pos2, leftList, rightList);
 
-		retrieveVCFStatisticRecords = main.getListStatisticBeans();
+		retrieveVCFStatisticRecords = snpQuery.getListStatisticBeans();
 
 		if (retriveVCFRecords != null) {
 			for (OutputSnpStatisticsBean retrieveVCFStatisticRecord : retrieveVCFStatisticRecords) {

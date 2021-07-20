@@ -1,1 +1,1 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"83dc75f889494fb3b78908160417c15c","collectionName":"geneInfo"}
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"chromosome":{"$numberInt":"1"},"start":{"$numberInt":"1"},"end":{"$numberInt":"1"}},"name":"chromosome_1_start_1_end_1"}],"uuid":"740486c620b14111b1d8a77d70f126e8","collectionName":"geneInfo"}

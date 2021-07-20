@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import in.cdac.bioinfo.gamut.mongodb.MongoDBLoader;
+import in.cdac.bioinfo.gamut.mongodb.query.SnpQuery;
 import in.cdac.bioinfo.gamut.vcf.bean.Vcf;
 
 /**
@@ -219,6 +220,7 @@ public class VcfParser implements Runnable {
 
 		boolean flag = true;
 
+		SnpQuery snpcq = new SnpQuery(mongoDBLoader);
 		List<Vcf> vcfBeans = new ArrayList<>(BATCH_RECORD_COUNT);
 
 		for (int i = 0; i < BATCH_RECORD_COUNT; i++) {
@@ -254,6 +256,11 @@ public class VcfParser implements Runnable {
 					if (vcfb.getMapAltLines().size() == 0)
 						continue;
 					
+	                
+	                List<String> geneNames=snpcq.retriveGeneRecords(vcfb.getChromosome(),vcfb.getPosition());
+	                   
+	                vcfb.setGeneName(geneNames);
+
 					index++;
 
 				}

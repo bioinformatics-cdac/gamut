@@ -179,8 +179,10 @@ public class SnpQuery {
 
 		Bson filter = Filters.and(Filters.eq("chromosome", chromosome), Filters.lte("start", position),
 				Filters.gte("end", position));
+//		Bson filter = Filters.and(Filters.eq("chromosome", chromosome), Filters.lte("start", position),
+//				Filters.gte("end", position));
 		FindIterable<Document> result = this.geneCollection.find(filter);
-		long count = this.geneCollection.count(filter);
+
 		List<String> genenameList = new ArrayList<String>();
 
 		for (Document document : result) {
@@ -191,7 +193,7 @@ public class SnpQuery {
 		if (genenameList.size() > 0) {
 
 		} else {
-			// genenameList.add("Non-Gene");
+			genenameList.add("");
 		}
 
 		return genenameList;
@@ -235,8 +237,9 @@ public class SnpQuery {
 
 		System.out.println("Filter : " + filter.toString());
 		long startTime = System.currentTimeMillis();
-		
+
 		FindIterable<Document> result = this.collection.find(filter);
+		
 		long endTime = System.currentTimeMillis();
 
 		System.out.println("Query Execution taken : " + (endTime - startTime) + " ms");
@@ -249,10 +252,10 @@ public class SnpQuery {
 					rightSet);
 
 			if (resultSNPBean != null) {
-
-				List<String> retriveGeneRecords = retriveGeneRecords(resultSNPBean.getChromosome(),
-						resultSNPBean.getChromosome_Position());
-				resultSNPBean.setGeneList(retriveGeneRecords);
+//
+//				List<String> retriveGeneRecords = retriveGeneRecords(resultSNPBean.getChromosome(),
+//						resultSNPBean.getChromosome_Position());
+//				resultSNPBean.setGeneList(retriveGeneRecords);
 
 				listOfVCFStrings.add(resultSNPBean);
 

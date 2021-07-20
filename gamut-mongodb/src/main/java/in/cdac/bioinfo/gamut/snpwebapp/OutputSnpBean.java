@@ -122,5 +122,14 @@ public class OutputSnpBean {
 				+ Chromosome_Position + ", Ref=" + Ref + ", SetOne=" + SetOne + ", SetTwo=" + SetTwo + ", SetOneRaw="
 				+ SetOneRaw + ", SetTwoRaw=" + SetTwoRaw + '}';
 	}
+	
+	public String csvFormat() {
+		return Chromosome+","+Chromosome_Position+","+Ref+","+SetOne+","+SetTwo+","+geneList;
+	}
+	
+	public String tsvFormat() {
+		return Chromosome+"\t"+Chromosome_Position+"\t"+Ref+"\t"+SetOne+"\t"+SetTwo+"\t"+geneList;
+	}
+	
 
 }

@@ -116,9 +116,15 @@
                                                 <td style="width: 40%;">
                                                     <pri:panel id="tblpaneldownload" rendered="#{snpHomeBean.tblFlag}" style="border: 0px;">
                                                         <span class="badge badge-secondary text-light badge-md" style="margin-right: 0px;">
-                                                            <h:commandLink action="#{snpHomeBean.saveTxt()}" value="Download Table" style="color: white;">
-                                                                <pri:graphicImage name="images/export_icon.jpg" width="24" alt="Download Table"/>                                        
-                                                            </h:commandLink>                                    
+                                                        	<a href="api/download/csv" target="_blank" > CSV </a>     
+                                                         	
+                                                         </span>
+                                                         <span class="badge badge-secondary text-light badge-md" style="margin-right: 0px;">
+                                                         	<a href="api/download/tsv" target="_blank" > TSV </a>     
+                                                         	</span>
+                                                         <span class="badge badge-secondary text-light badge-md" style="margin-right: 0px;">
+                                                         	<a href="api/download/json" target="_blank" > Json </a>     
+                                                                                   
                                                         </span>
                                                     </pri:panel> 
                                                 </td>

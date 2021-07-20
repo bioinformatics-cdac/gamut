@@ -138,6 +138,7 @@ public class GeneParser implements Runnable{
 //            }
             long end = System.currentTimeMillis();
             System.out.println("Total Time " + (end - start) / 1000 + " in Seconds");
+            mongoDbDAO.geneCreateIndex();
             // System.out.println("File Name : " + geneFile.getName());
             // System.out.println("Counter : " + counter);
 

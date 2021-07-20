@@ -53,7 +53,7 @@ public class UploadBean implements Serializable {
 	}
 
 	private String vcfcollection;
-	private String organismScientificName = "HomoSapiene";
+	private String organismScientificName = "Homo_sapiens";
 	private String genecollectionaName;
 
 	public Part getReferenceFile() {

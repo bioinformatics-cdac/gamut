@@ -77,6 +77,12 @@ public class MongoDbDAO {
 
 	}
 
+	public void geneCreateIndex() {
+		// db.geneInfo.createIndex({"chromosome": 1 , "start":1, "end":1})
+		geneCollection.createIndex(Indexes.ascending("chromosome", "start", "end"));
+
+	}
+
 	public void createIndices() {
 		collection.createIndex(Indexes.ascending("Chromosome", "Position"));
 		collection.createIndex(Indexes.ascending("Position"));
@@ -129,7 +135,6 @@ public class MongoDbDAO {
 					}
 
 				}
-
 
 			}
 		} else {
