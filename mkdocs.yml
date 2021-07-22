@@ -11,12 +11,13 @@ docs_dir: docs
 
 # Navigation
 nav:
-  - Welcome:
+  - Documentation:
     - Overview: README.md 
     - Installation:
-      - 1 Docker Compose: install/run-docker-compose.md 
-      - 2 Build from source: install/run-from-source.md
-
+      - Docker Compose: install/run-docker-compose.md 
+      - Build from source: install/run-from-source.md
+      - Manual Installation (Suggested for advanced users): install/build-manual.md
+    - Usage: usage/use.md 
 
 copyright: Copyright &copy; 2021 C-DAC
 
