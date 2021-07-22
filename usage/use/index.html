@@ -304,7 +304,7 @@
   
     <li class="md-nav__item">
       <a href="../../install/build-manual/" class="md-nav__link">
-        Manual Installation
+        Manual Installation (Suggested for advanced users)
       </a>
     </li>
   
@@ -361,16 +361,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#advance-search" class="md-nav__link">
-    Advance Search
+  <a href="#upload-of-user-defined-datasets" class="md-nav__link">
+    Upload of user-defined datasets
+  </a>
+  
+    <nav class="md-nav" aria-label="Upload of user-defined datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-of-gamut-for-data-upload-and-retrieval-using-ubuntu-18045-lts-server-with-amd-epyc-7452-32-core-processor-with-128gb-ram" class="md-nav__link">
+    Performance of GAMUT for data upload and retrieval (*using Ubuntu 18.04.5 LTS server with AMD EPYC 7452 32-Core Processor with 128GB RAM)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#serach-with-user-defined-populations" class="md-nav__link">
-    Serach with user defined populations
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -421,16 +427,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#advance-search" class="md-nav__link">
-    Advance Search
+  <a href="#upload-of-user-defined-datasets" class="md-nav__link">
+    Upload of user-defined datasets
+  </a>
+  
+    <nav class="md-nav" aria-label="Upload of user-defined datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-of-gamut-for-data-upload-and-retrieval-using-ubuntu-18045-lts-server-with-amd-epyc-7452-32-core-processor-with-128gb-ram" class="md-nav__link">
+    Performance of GAMUT for data upload and retrieval (*using Ubuntu 18.04.5 LTS server with AMD EPYC 7452 32-Core Processor with 128GB RAM)
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#serach-with-user-defined-populations" class="md-nav__link">
-    Serach with user defined populations
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -454,28 +466,23 @@
                 <h1 id="how-to-use-gamut"><strong>How to use Gamut</strong><a class="headerlink" href="#how-to-use-gamut" title="Permanent link">&para;</a></h1>
 <h2 id="basic-search">Basic Search<a class="headerlink" href="#basic-search" title="Permanent link">&para;</a></h2>
 <p><a href="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut_selection.png"><img alt="Basic Search Page" src="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut_selection.png" /></a></p>
-<p><a href="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut_set_selection.png">(<img alt="Basic Search Page" src="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut_set_selection.png" /></a>)
-<div class="highlight"><pre><span></span><code>- Select Set I population and Set II population
-- Select which chromosome list you want
-- Enter Chromosome position Start and End
-- Hit Search 
-- Output 
+<p><a href="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut_set_selection.png"><img alt="Basic Search Page" src="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut_set_selection.png" /></a>
+<div class="highlight"><pre><span></span><code>- Select individuals to be used as Set-I and Set-II populations
+- Select genomic coordinates of any chromosome of interest(Enter Chromosome position Start and End)
+- Click Search button 
+- Tabular Output 
 </code></pre></div>
 <a href="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/output.png"><img alt="Output Page" src="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/output.png" /></a></p>
-<h2 id="advance-search">Advance Search<a class="headerlink" href="#advance-search" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>- select Set I population and Set II population
-- Select which chromosome list you want
-- Enter Chromosome position Start and End
-- Hit Search -
-- Output -
-</code></pre></div>
-<h2 id="serach-with-user-defined-populations">Serach with user defined populations<a class="headerlink" href="#serach-with-user-defined-populations" title="Permanent link">&para;</a></h2>
+<h2 id="upload-of-user-defined-datasets">Upload of user-defined datasets<a class="headerlink" href="#upload-of-user-defined-datasets" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Upload Gtf and Vcf population file (Screen shot)
-<div class="highlight"><pre><span></span><code>It will take time to upload if file is Big, after upload successfully it will be available  in search option `
-- Then continue with above steps (Basic search or Advance search)
+<li>Upload GTF and VCF population files 
+(Screen shot)
+<div class="highlight"><pre><span></span><code>- Please note the time for upload and storing into MongoDB depends on the file size
+- Once upload is completed, the data is ready for query
 </code></pre></div></li>
 </ul>
+<h3 id="performance-of-gamut-for-data-upload-and-retrieval-using-ubuntu-18045-lts-server-with-amd-epyc-7452-32-core-processor-with-128gb-ram">Performance of GAMUT for data upload and retrieval (*using Ubuntu 18.04.5 LTS server with AMD EPYC 7452 32-Core Processor with 128GB RAM)<a class="headerlink" href="#performance-of-gamut-for-data-upload-and-retrieval-using-ubuntu-18045-lts-server-with-amd-epyc-7452-32-core-processor-with-128gb-ram" title="Permanent link">&para;</a></h3>
+<p><a href="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/upload_time.png"><img alt="Output Page" src="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/upload_time.png" /></a></p>
                 
               
               
@@ -507,7 +514,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Manual Installation
+              Manual Installation (Suggested for advanced users)
             </div>
           </div>
         </a>

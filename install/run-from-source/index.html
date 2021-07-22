@@ -326,23 +326,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pre-requisite" class="md-nav__link">
-    Pre Requisite
+  <a href="#pre-requisites" class="md-nav__link">
+    Pre-requisites
   </a>
   
-    <nav class="md-nav" aria-label="Pre Requisite">
+    <nav class="md-nav" aria-label="Pre-requisites">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#step-1-make-clone-image-of-gamut" class="md-nav__link">
-    Step 1: Make clone image of gamut
+    Step 1: Make clone image of Gamut
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-go-into-folder" class="md-nav__link">
-    Step 2:  Go into folder
+  <a href="#step-2-change-the-directory" class="md-nav__link">
+    Step 2:   Change the directory
   </a>
   
 </li>
@@ -355,22 +355,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-4-build-docker" class="md-nav__link">
-    Step 4:  Build docker
+  <a href="#step-4-build-gamut-docker-image" class="md-nav__link">
+    Step 4:  Build Gamut docker image
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-5-run-gamut-docker-image" class="md-nav__link">
-    Step 5:  Run gamut docker image
+    Step 5:  Run Gamut docker image
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-6-open-url-in-browser" class="md-nav__link">
-    Step 6:  open url in browser
+    Step 6:  Open url in browser
   </a>
   
 </li>
@@ -378,6 +378,13 @@
           <li class="md-nav__item">
   <a href="#screenshot" class="md-nav__link">
     Screenshot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-stop-docker-container" class="md-nav__link">
+    Step 5:  Stop docker container
   </a>
   
 </li>
@@ -401,7 +408,7 @@
   
     <li class="md-nav__item">
       <a href="../build-manual/" class="md-nav__link">
-        Manual Installation
+        Manual Installation (Suggested for advanced users)
       </a>
     </li>
   
@@ -457,23 +464,23 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pre-requisite" class="md-nav__link">
-    Pre Requisite
+  <a href="#pre-requisites" class="md-nav__link">
+    Pre-requisites
   </a>
   
-    <nav class="md-nav" aria-label="Pre Requisite">
+    <nav class="md-nav" aria-label="Pre-requisites">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#step-1-make-clone-image-of-gamut" class="md-nav__link">
-    Step 1: Make clone image of gamut
+    Step 1: Make clone image of Gamut
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-go-into-folder" class="md-nav__link">
-    Step 2:  Go into folder
+  <a href="#step-2-change-the-directory" class="md-nav__link">
+    Step 2:   Change the directory
   </a>
   
 </li>
@@ -486,22 +493,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-4-build-docker" class="md-nav__link">
-    Step 4:  Build docker
+  <a href="#step-4-build-gamut-docker-image" class="md-nav__link">
+    Step 4:  Build Gamut docker image
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-5-run-gamut-docker-image" class="md-nav__link">
-    Step 5:  Run gamut docker image
+    Step 5:  Run Gamut docker image
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#step-6-open-url-in-browser" class="md-nav__link">
-    Step 6:  open url in browser
+    Step 6:  Open url in browser
   </a>
   
 </li>
@@ -509,6 +516,13 @@
           <li class="md-nav__item">
   <a href="#screenshot" class="md-nav__link">
     Screenshot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-stop-docker-container" class="md-nav__link">
+    Step 5:  Stop docker container
   </a>
   
 </li>
@@ -536,8 +550,8 @@
                 
                 
                 <h1 id="how-to-use-the-gamut-from-source">How to Use the Gamut from source<a class="headerlink" href="#how-to-use-the-gamut-from-source" title="Permanent link">&para;</a></h1>
-<h2 id="pre-requisite">Pre Requisite<a class="headerlink" href="#pre-requisite" title="Permanent link">&para;</a></h2>
-<p>Docker Compose relies on Docker Engine for any meaningful work, so make sure you have Docker Engine installed either locally or remote, depending on your setup.</p>
+<h2 id="pre-requisites">Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
+<p>Docker Engine and Docker Compose installed either locally or remote, depending on available setup.</p>
 <p><strong>Docker Installation</strong></p>
 <ul>
 <li>
@@ -552,29 +566,33 @@
 </code></pre></div></p>
 </li>
 </ul>
-<h3 id="step-1-make-clone-image-of-gamut">Step 1: Make clone image of gamut<a class="headerlink" href="#step-1-make-clone-image-of-gamut" title="Permanent link">&para;</a></h3>
+<h3 id="step-1-make-clone-image-of-gamut">Step 1: Make clone image of Gamut<a class="headerlink" href="#step-1-make-clone-image-of-gamut" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>git clone https://github.com/bioinformatics-cdac/gamut
 </code></pre></div>
-<h3 id="step-2-go-into-folder">Step 2:  Go into folder<a class="headerlink" href="#step-2-go-into-folder" title="Permanent link">&para;</a></h3>
+<h3 id="step-2-change-the-directory">Step 2:   Change the directory<a class="headerlink" href="#step-2-change-the-directory" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>cd gamut
 </code></pre></div>
 <h3 id="step-3-make-maven-clean-install">Step 3:  Make maven clean install<a class="headerlink" href="#step-3-make-maven-clean-install" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>mvn clean install
 </code></pre></div>
-<h3 id="step-4-build-docker">Step 4:  Build docker<a class="headerlink" href="#step-4-build-docker" title="Permanent link">&para;</a></h3>
+<h3 id="step-4-build-gamut-docker-image">Step 4:  Build Gamut docker image<a class="headerlink" href="#step-4-build-gamut-docker-image" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>docker build -t bioinformaticscdac/gamut .
 </code></pre></div>
-<h3 id="step-5-run-gamut-docker-image">Step 5:  Run gamut docker image<a class="headerlink" href="#step-5-run-gamut-docker-image" title="Permanent link">&para;</a></h3>
+<h3 id="step-5-run-gamut-docker-image">Step 5:  Run Gamut docker image<a class="headerlink" href="#step-5-run-gamut-docker-image" title="Permanent link">&para;</a></h3>
 <p><div class="highlight"><pre><span></span><code>docker-compose up -d
 </code></pre></div>
 <img alt="Docker compose Command" src="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut_start.png" />
 wait for 2 minutes for load sample data</p>
-<h3 id="step-6-open-url-in-browser">Step 6:  open url in browser<a class="headerlink" href="#step-6-open-url-in-browser" title="Permanent link">&para;</a></h3>
+<h3 id="step-6-open-url-in-browser">Step 6:  Open url in browser<a class="headerlink" href="#step-6-open-url-in-browser" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p><a href="http://localhost:8080/">http://localhost:8080/</a></p>
 </blockquote>
 <h3 id="screenshot"><em>Screenshot</em><a class="headerlink" href="#screenshot" title="Permanent link">&para;</a></h3>
 <p><a href="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut.png"><img alt="Gamut Home Page" src="https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut.png" /></a></p>
+<h3 id="step-5-stop-docker-container">Step 5:  Stop docker container<a class="headerlink" href="#step-5-stop-docker-container" title="Permanent link">&para;</a></h3>
+<p>Once analysis is completed using either sample or user defined datasets it is advised to stop the docker containers
+<div class="highlight"><pre><span></span><code>docker-compose down
+</code></pre></div></p>
                 
               
               
@@ -618,7 +636,7 @@ wait for 2 minutes for load sample data</p>
               <span class="md-footer__direction">
                 Next
               </span>
-              Manual Installation
+              Manual Installation (Suggested for advanced users)
             </div>
           </div>
           <div class="md-footer__button md-icon">
