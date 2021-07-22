@@ -42,3 +42,9 @@ wait for 2 minutes for loading of sample data
 ### _Screenshot_
 
  [![Gamut Home Page](https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut.png)](https://raw.githubusercontent.com/bioinformatics-cdac/gamut/main/docs/img/gamut.png)
+
+### Step 5:  Stop docker container
+Once analysis is completed using either sample or user defined datasets it is advised to stop the docker containers
+```
+docker-compose down
+```

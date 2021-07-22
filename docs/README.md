@@ -4,6 +4,10 @@
 
 **GAMUT** - Platform for addressing high throughput analysis and management of variant data produced by Next Generation Sequencing techniques.
 
+**Developed by :** High Performance Computing - Medical & Bioinformatics Applications Group (HPC-M&BA) at Center for Development of Advanced Computing (C-DAC), Pune, India.
+
+For more details [click here](https://www.cdac.in/index.aspx?id=bioinfo)
+
 ## Features
 - **Accelerated Search** : Speed and Optimization are key attributes for any search, Gamut enables these features for search across large genomic databases.
 - **Graphical Output** : Graphical output displays the results in different graphical formats like bar and pie charts.
